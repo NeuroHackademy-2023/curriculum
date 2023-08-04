@@ -107,10 +107,10 @@ colors = {'physical': physical_color,
 
 # Rooms:
 rooms_physical = ['AA', 'A103', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'C']
-probs_physical = np.array([1]*8 + [2])
+probs_physical = np.array([1]*len(rooms_physical))
 probs_physical = probs_physical / np.sum(probs_physical)
 rooms_virtual = ['AA', 'A103', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'C']
-probs_virtual = np.array([1]*8 + [2])
+probs_virtual = np.array([1]*len(rooms_virtual))
 probs_virtual = probs_virtual / np.sum(probs_virtual)
 nrooms = len(rooms_physical)
 def roomdraw(style='virtual', nrounds=6):
