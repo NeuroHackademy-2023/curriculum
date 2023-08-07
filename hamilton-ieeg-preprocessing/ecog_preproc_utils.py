@@ -51,14 +51,18 @@ def applyHilbertTransform(X, rate, center, sd):
 def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
                   car_chans='average', log_transform=True, do_zscore=True,
                   hg_fs=100, notch_freqs=[60,120,180],
-                  ch_types='eeg', overwrite=False, save=False, out_dir=None):
+                  ch_types='eeg', overwrite=False):
     
     # The suffix that will be added to the file name as
     # different procedures occur
     full_suffix = ''
-
+    
+    raw_dir = os.path.join(data_dir, 'Raw')
+    if not os.path.isdir(raw_dir):
+        os.mkdir(raw_dir)
+        
     raw.load_data()
-    #raw.pick_types(meg=False, eeg=True, ecog=True) 
+    raw.pick_types(meg=False, eeg=True, ecog=True) 
     nchans = raw.info['nchan']
 
     band_ranges = {'delta': [None, 4],
@@ -71,16 +75,16 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
     if notch:
         full_suffix += '_notch'
         print("Doing notch filter")
-        raw.plot_psd()
+        raw.compute_psd().plot(picks='data', exclude=[])
         raw.notch_filter(notch_freqs)
-        raw.plot_psd()
+        raw.compute_psd().plot(picks='data', exclude=[])
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title='notch filtered raw data')
-        # try:
-        #     newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
-        #     raw.save(newfile, overwrite=overwrite)
-        # except:
-        #     print(f"Can't save {newfile}. Do you need overwrite=True?")
+        try:
+            newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
+            raw.save(newfile, overwrite=overwrite)
+        except:
+            print(f"Can't save {newfile}. Do you need overwrite=True?")
 
     if CAR:
         full_suffix += '_car'
@@ -89,11 +93,11 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         raw.set_eeg_reference(car_chans)
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title='after referencing (CAR)')
-        # try:
-        #     newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
-        #     raw.save(newfile, overwrite=overwrite)
-        # except:
-        #     print(f"Can't save {newfile}. Do you need overwrite=True?")
+        try:
+            newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
+            raw.save(newfile, overwrite=overwrite)
+        except:
+            print(f"Can't save {newfile}. Do you need overwrite=True?")
 
     # Get center frequencies and standard deviations of the bands
     # for the Hilbert transform
@@ -118,8 +122,7 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         f_low = band_ranges[band][0]
         f_high = band_ranges[band][1]
 
-        if out_dir is None:
-            out_dir = os.path.join(data_dir, f'{band}_{f_low}to{f_high}')
+        out_dir = os.path.join(data_dir, f'{band}_{f_low}to{f_high}')
         if not os.path.isdir(out_dir):
             print("Creating directory %s" %(out_dir))
             os.mkdir(out_dir)
@@ -129,8 +132,7 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         print(f"Filtering data in {band} band from {f_low} to {f_high} Hz")
         print("Note that this will *not* use the analytic amplitude like high gamma")
         raw.filter(l_freq=f_low, h_freq=f_high)
-        if save:
-            raw.save(os.path.join(out_dir, fname))
+        raw.save(os.path.join(out_dir, fname), overwrite=overwrite)
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title=f'after filtering in {band} band')
         transformed_data = raw.copy()
@@ -139,9 +141,6 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         f_low = 4
         f_high = 200
         hg_dir = os.path.join(data_dir, f'HilbAA_{f_low}to{f_high}_40band')
-        if not os.path.isdir(hg_dir):
-            print("Creating directory %s" %(hg_dir))
-            os.mkdir(hg_dir)
 
     if (band == "high_gamma") or (band == "broadband"):
         # do the Hilbert transform
@@ -165,45 +164,14 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         # hilbmat is now the analytic amplitude matrix
         hilbmat = np.array(np.hstack((dat))).reshape(dat[0].shape[0], -1, dat[0].shape[1])
         
-    if band == "broadband":
-        print("Saving the full 40 band matrices (not yet done...)")
-        ### TO BE DEVELOPED
+        if band == "broadband":
+            print("Saving the full 40 band matrices (not yet done...)")
+            ### TO BE DEVELOPED
 
-        for b in np.arange(hilbmat.shape[1]): 
-            print(f"Doing band {b}")
-            band_signal = hilbmat[:,b,:]
-            #band_signal = (band_signal - )
-            band_signal = (band_signal - np.expand_dims(np.nanmean(band_signal, axis=1), axis=1) )/np.expand_dims(np.nanstd(band_signal, axis=1), axis=1)
-
-            band_info = mne.create_info(raw.info['ch_names'], raw.info['sfreq'], ch_types)
-
-            hgdat = mne.io.RawArray(band_signal, band_info)
-
-            if raw.annotations: # if we rejected something reject it in HG also
-                for annotation in raw.annotations:
-                    # Add annotations from raw to hg data
-                    onset = (annotation['onset']-(raw.first_samp/raw.info['sfreq'])) # convert start time for clin
-                    duration = annotation['duration']
-                    description = annotation['description']
-                    hgdat.annotations.append(onset,duration,description)
-            hgdat.resample(hg_fs)
-            nband = len(cts)
-            fname = f'ecog_hilbAA_{f_low}to{f_high}_{nband}band_bandnum{b}{full_suffix}.fif'
-            new_fname = os.path.join(hg_dir, fname) 
-
-            if save:
-                print(f"Saving to {new_fname}")
-                try:
-                    hgdat.save(new_fname, overwrite=overwrite)
-                except:
-                    print(f"Can't save {new_fname}. Do you need overwrite=True?")
-                    
-        return hilbmat
-    else:
         # average across relevant bands
         print("Taking the mean across %d bands"%(hilbmat.shape[1]))
         hg_signal = hilbmat.mean(1) # Get the average across the relevant bands 
-    
+        
         if do_zscore:
             # Z-score
             print("Z-scoring signal")
@@ -224,15 +192,14 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         nband = len(cts)
         fname = f'ecog_hilbAA_{f_low}to{f_high}_{nband}band{full_suffix}.fif'
         new_fname = os.path.join(hg_dir, fname) 
-        if save:
-            print(f"Saving to {new_fname}")
-            try:
-                hgdat.save(new_fname, overwrite=overwrite)
-            except:
-                print(f"Can't save {new_fname}. Do you need overwrite=True?")
+        print(f"Saving to {new_fname}")
+        try:
+            hgdat.save(new_fname, overwrite=overwrite)
+        except:
+            print(f"Can't save {new_fname}. Do you need overwrite=True?")
         transformed_data = hgdat.copy()
         hgdat.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                    title=f'after analytic amplitude in {band} band')
 
-        return transformed_data
+    return transformed_data
 
