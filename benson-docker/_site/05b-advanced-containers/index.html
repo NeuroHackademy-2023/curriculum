@@ -1,0 +1,817 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Creating More Complex Container Images &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/05b-advanced-containers.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/05-creating-container-images/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/06-containers-for-continuous-integration/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Creating More Complex Container Images</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 30 min
+      <br/>
+      <strong>Exercises:</strong> 30 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I make more complex container images?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how you can include files within Docker images when you build them.</p>
+</li>
+	
+	<li><p>Explain how you can access files on the Docker host from your Docker containers.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>In order to create and use your own containers, you may need more information than
+our previous example. You may want to use files from outside the container, copy
+those files into the container, and just generally learn a little bit about software
+installation. This episode will cover these. Note that the examples will get gradually
+more and more complex - most day-to-day use of containers can be accomplished
+using the first 1-2 sections on this page.</p>
+
+<h2 id="using-scripts-and-files-from-outside-the-container">Using scripts and files from outside the container</h2>
+
+<p>In your shell, change to the <code class="language-plaintext highlighter-rouge">sum</code> folder in the <code class="language-plaintext highlighter-rouge">docker-intro</code> folder and look at
+the files inside.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/docker-intro/sum
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>This folder has both a <code class="language-plaintext highlighter-rouge">Dockerfile</code> and a python script called <code class="language-plaintext highlighter-rouge">sum.py</code>. Let’s say
+we wanted to try running the script using our recently created <code class="language-plaintext highlighter-rouge">alpine-python</code>
+container.</p>
+
+<blockquote class="challenge">
+  <h2 id="running-containers">Running containers</h2>
+
+  <p>What command would we use to run python from the <code class="language-plaintext highlighter-rouge">alpine-python</code> container?</p>
+</blockquote>
+
+<p>If we try running the container and Python script, what happens?</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python python3 sum.py
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3: can't open file 'sum.py': [Errno 2] No such file or directory
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="no-such-file-or-directory">No such file or directory</h2>
+
+  <p>What does the error message mean? Why might the Python inside the container
+not be able to find or open our script?</p>
+
+</blockquote>
+
+<p>The problem here is that the container and its file system is separate from our
+host computer’s file system. When the container runs, it can’t see anything outside
+itself, including any of the files on our computer. In order to use Python
+(inside the container) and our script (outside the container, on our computer),
+we need to create a link between the directory on our computer and the container.</p>
+
+<p>This link is called a “mount” and is what happens automatically when a USB drive
+or other external hard drive gets connected to a computer - you can see the
+contents appear as if they were on your computer.</p>
+
+<p>We can create a mount between our computer and the running container by using an additional
+option to <code class="language-plaintext highlighter-rouge">docker run</code>. We’ll also use the variable <code class="language-plaintext highlighter-rouge">${PWD}</code> which will substitute
+in our current working directory. The option will look like this</p>
+
+<p><code class="language-plaintext highlighter-rouge">-v ${PWD}:/temp</code></p>
+
+<p>What this means is – link my current directory with the container, and inside the
+container, name the directory <code class="language-plaintext highlighter-rouge">/temp</code></p>
+
+<p>Let’s try running the command now:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp alice/alpine-python python3 sum.py
+</code></pre></div></div>
+
+<p>But we get the same error!</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3: can't open file 'sum.py': [Errno 2] No such file or directory
+</code></pre></div></div>
+
+<p>This final piece is a bit tricky – we really have to remember to put ourselves
+inside the container. Where is the <code class="language-plaintext highlighter-rouge">sum.py</code> file? It’s in the directory that’s been
+mapped to <code class="language-plaintext highlighter-rouge">/temp</code> – so we need to include that in the path to the script. This
+command should give us what we need:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp alice/alpine-python python3 /temp/sum.py
+</code></pre></div></div>
+
+<p>Note that if we create any files in the <code class="language-plaintext highlighter-rouge">/temp</code> directory while the container is
+running, these files will appear on our host filesystem in the original directory
+and will stay there even when the container stops.</p>
+
+<blockquote class="challenge">
+  <h2 id="exercise-explore-the-script">Exercise: Explore the script</h2>
+
+  <p>What happens if you use the <code class="language-plaintext highlighter-rouge">docker run</code> command above
+and put numbers after the script name?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>This script comes from <a href="https://wiki.python.org/moin/SimplePrograms">the Python Wiki</a>
+and is set to add all numbers
+that are passed to it as arguments.</p>
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-checking-the-options">Exercise: Checking the options</h2>
+
+  <p>Our Docker command has gotten much longer! Can you go through each piece of
+the Docker command above the explain what it does? How would you characterize
+the key components of a Docker command?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution</h2>
+
+    <p>Here’s a breakdown of each piece of the command above</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker run</code>: use Docker to run a container</li>
+      <li><code class="language-plaintext highlighter-rouge">-v ${PWD}:/temp</code>: connect my current working directory (<code class="language-plaintext highlighter-rouge">${PWD}</code>) as a folder
+inside the container called <code class="language-plaintext highlighter-rouge">/temp</code></li>
+      <li><code class="language-plaintext highlighter-rouge">alice/alpine-python</code>: name of the container to run</li>
+      <li><code class="language-plaintext highlighter-rouge">python3 /temp/sum.py</code>: what commands to run in the container</li>
+    </ul>
+
+    <p>More generally, every Docker command will have the form:
+`docker [action] [docker options] [docker image] [command to run inside]</p>
+
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-interactive-jobs">Exercise: Interactive jobs</h2>
+
+  <p>Try using the directory mount option but run the container interactively.
+Can you find the folder that’s connected to your computer? What’s inside?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-2">Solution</h2>
+
+    <p>The docker command to run the container interactively is:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp <span class="nt">-it</span> alice/alpine-python sh
+</code></pre></div>    </div>
+
+    <p>Once inside, you should be able to navigate to the <code class="language-plaintext highlighter-rouge">/temp</code> folder
+and see that’s contents are the same as the files on your computer:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">cd</span> /temp
+/# <span class="nb">ls</span>
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>Mounting a folder can be very useful when you want to run the software inside your container on many different input files.
+In other situations, you may want to save or archive an authoritative version of your data by adding it to the container permanently.  That’s what we will cover next.</p>
+
+<h2 id="including-personal-scripts-and-data-in-a-container">Including personal scripts and data in a container</h2>
+
+<p>Our next project will be to add our own files to a container - something you
+might want to do if you’re sharing a finished analysis or just want to have
+an archived copy of your entire analysis including the data. Let’s assume that we’ve finished with our <code class="language-plaintext highlighter-rouge">sum.py</code>
+script and want to add it to the container itself.</p>
+
+<p>In your shell, you should still be in the <code class="language-plaintext highlighter-rouge">sum</code> folder in the <code class="language-plaintext highlighter-rouge">docker-intro</code> folder.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">pwd</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/Users/yourname/Desktop/docker-intro/sum
+</code></pre></div></div>
+
+<p>Take a look at the Dockerfile. It looks similar to the one we used before, but
+it has an additional line with the <code class="language-plaintext highlighter-rouge">COPY</code> keyword.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COPY sum.py /home
+</code></pre></div></div>
+
+<p>This line will cause Docker to copy the file from your computer into the container’s
+file system. Let’s build the container like before, but give it a different name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alice/alpine-sum <span class="nb">.</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-did-it-work">Exercise: Did it work?</h2>
+
+  <p>Can you remember how to run a container interactively? Try that with this one.
+Once inside, try running the Python script.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-3">Solution</h2>
+
+    <p>You can start the container interactively like so:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alice/alpine-sum sh
+</code></pre></div>    </div>
+
+    <p>You should be able to run the python command inside the container like this:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3 /home/sum.py
+</code></pre></div>    </div>
+
+  </blockquote>
+</blockquote>
+
+<p>This <code class="language-plaintext highlighter-rouge">COPY</code> keyword can be used to place your own scripts or own data into a container
+that you want to publish or use as a record. Note that it’s not necessarily a good idea
+to put your scripts inside the container if you’re constantly changing or editing them.
+Then, referencing the scripts from outside the container is a good idea, as we
+did in the previous section. You also want to think carefully about size – if you
+run <code class="language-plaintext highlighter-rouge">docker image ls</code> you’ll see the size of each image all the way on the right of
+the screen. The bigger your image becomes, the harder it will be to easily download.</p>
+
+<blockquote class="callout">
+  <h2 id="copying-alternatives">Copying alternatives</h2>
+
+  <p>Another trick for getting your own files into a container is by using the <code class="language-plaintext highlighter-rouge">RUN</code>
+keyword and downloading the files from the internet. For example, if your code
+is in a GitHub repository, you could include this statement in your Dockerfile
+to download the latest version every time you build the container:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN git clone https://github.com/alice/mycode
+</code></pre></div>  </div>
+
+  <p>Similarly, the <code class="language-plaintext highlighter-rouge">wget</code> command can be used to download any file publicly available
+on the internet:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
+</code></pre></div>  </div>
+
+</blockquote>
+
+<h2 id="more-fancy-dockerfile-options-optional-for-presentation-or-as-exercises">More fancy <code class="language-plaintext highlighter-rouge">Dockerfile</code> options (optional, for presentation or as exercises)</h2>
+
+<p>We can expand on the example above to make our container even more “automatic”.
+Here are some ideas:</p>
+
+<h3 id="make-the-sumpy-script-run-automatically">Make the <code class="language-plaintext highlighter-rouge">sum.py</code> script run automatically</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+RUN apk add --update python3 py3-pip python3-dev
+
+# Run the sum.py script as the default command
+CMD ["python3", "/home/sum.py"]
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v1 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v1
+</code></pre></div></div>
+
+<p>You’ll notice that you can run the container without arguments just fine,
+resulting in <code class="language-plaintext highlighter-rouge">sum = 0</code>, but this is boring. Supplying arguments however
+doesn’t work:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run alpine-sum:v1 10 11 12
+</code></pre></div></div>
+<p>results in</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker: Error response from daemon: OCI runtime create failed:
+container_linux.go:349: starting container process caused "exec:
+\"10\": executable file not found in $PATH": unknown.
+</code></pre></div></div>
+
+<p>This is because the arguments <code class="language-plaintext highlighter-rouge">10 11 12</code> are interpreted as a
+<em>command</em> that replaces the default command given by <code class="language-plaintext highlighter-rouge">CMD
+["python3", "/home/sum.py"]</code> in the image.</p>
+
+<p>To achieve the goal of having a command that <em>always</em> runs when the
+container is run <em>and</em> can be passed the arguments given on the
+command line, use the keyword <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code> in the <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+RUN apk add --update python3 py3-pip python3-dev
+
+# Run the sum.py script as the default command and
+# allow people to enter arguments for it
+ENTRYPOINT ["python3", "/home/sum.py"]
+
+# Give default arguments, in case none are supplied on
+# the command-line
+CMD ["10", "11"]
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v2 <span class="nb">.</span>
+<span class="c"># Most of the time you are interested in the sum of 10 and 11:</span>
+<span class="nv">$ </span>docker run alpine-sum:v2
+<span class="c"># Sometimes you have more challenging calculations to do:</span>
+<span class="nv">$ </span>docker run alpine-sum:v2 12 13 14
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="overriding-the-entrypoint">Overriding the ENTRYPOINT</h2>
+  <p>Sometimes you don’t want to run the
+image’s <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code>. For example if you have a specialized image
+that does only sums, but you need an interactive shell to examine
+the container:</p>
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alpine-sum:v2 /bin/sh
+</code></pre></div>  </div>
+  <p>will yield</p>
+  <div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please supply integer arguments
+</code></pre></div>  </div>
+  <p>You need to override the <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code>-statement in the image like so:</p>
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">--entrypoint</span> /bin/sh alpine-sum:v2
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="add-the-sumpy-script-to-the-path-so-you-can-run-it-directly">Add the <code class="language-plaintext highlighter-rouge">sum.py</code> script to the <code class="language-plaintext highlighter-rouge">PATH</code> so you can run it directly:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+# set script permissions
+RUN chmod +x /home/sum.py
+# add /home folder to the PATH
+ENV PATH /home:$PATH
+
+RUN apk add --update python3 py3-pip python3-dev
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v3 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v3 sum.py 1 2 3 4
+</code></pre></div></div>
+
+<!--  LocalWords:  PowerShell
+ -->
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>You can include files from your Docker host into your Docker images by using the <code class="language-plaintext highlighter-rouge">COPY</code> instruction in your <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+    
+    <li><p>Docker allows containers to read and write files from the Docker host.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/05-creating-container-images/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/06-containers-for-continuous-integration/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/05b-advanced-containers.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

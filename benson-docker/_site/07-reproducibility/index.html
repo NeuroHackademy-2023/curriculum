@@ -1,0 +1,728 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Containers in research workflows: reproducibility and granularity &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/07-reproducibility.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/06-containers-for-continuous-integration/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/08-docker-compose/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Containers in research workflows: reproducibility and granularity</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br/>
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I use container images to make my research more reproducible?</p>
+</li>
+	
+	<li><p>How do I incorporate containers into my research workflow?</p>
+</li>
+	
+	<li><p>What are container orchestration tools and how can they potentially help me?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Understand how container images can help make research more reproducible.</p>
+</li>
+	
+	<li><p>Understand what practical steps I can take to improve the reproducibility of my research using containers.</p>
+</li>
+	
+	<li><p>Know that container orchestration tools are and what they can do</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>Although this workshop is titled “Reproducible computational environments using containers”,
+so far we have mostly covered the mechanics of using Docker with only passing reference to
+the reproducibility aspects. In this section, we discuss these aspects in more detail.</p>
+
+<blockquote class="callout">
+  <h2 id="work-in-progress">Work in progress…</h2>
+  <p>Note that reproducibility aspects of software and containers are an active area of research, discussion and development so are subject to many changes. We will present some ideas and approaches here but best practices will likely evolve in the near future.</p>
+</blockquote>
+
+<h2 id="reproducibility">Reproducibility</h2>
+
+<p>By <em>reproducibility</em> here we mean the ability of someone else (or your future self) being able to reproduce
+what you did computationally at a particular time (be this in research, analysis or something else)
+as closely as possible even if they do not have access to exactly the same hardware resources #
+that you had when you did the original work.</p>
+
+<p>Some examples of why containers are an attractive technology to help with reproducibility include:</p>
+
+<ul>
+  <li>The same computational work can be run across multiple different technologies seamlessly (e.g. Windows, macOS, Linux).</li>
+  <li>You can save the exact process that you used for your computational work (rather than relying on potentially incomplete notes).</li>
+  <li>You can save the exact versions of software and their dependencies in the image.</li>
+  <li>You can access legacy versions of software and underlying dependencies which may not be generally available any more.</li>
+  <li>Depending on their size, you can also potentially store a copy of key data within the image.</li>
+  <li>You can archive and share the image as well as associating a persistent identifier with an image to allow other researchers to reproduce and build on your work.</li>
+</ul>
+
+<h2 id="sharing-images">Sharing images</h2>
+
+<p>As we have already seen, the Docker Hub provides a platform for sharing images publicly. Once you have uploaded an image, you can point people to its public location and they can download and build upon it.</p>
+
+<p>This is fine for working collaboratively with images on a day-to-day basis but the Docker Hub is not a good option for long time archive of images in support of research and publications as:</p>
+
+<ul>
+  <li>free accounts have a limit on how long an image will be hosted if it is not updated</li>
+  <li>it does not support adding persistent identifiers to images</li>
+  <li>it is easy to overwrite tagged images with newer versions by mistake.</li>
+</ul>
+
+<h2 id="archiving-and-persistently-identifying-images-using-zenodo">Archiving and persistently identifying images using Zenodo</h2>
+
+<p>When you publish your work or make it publicly available in some way it is good practice to make images that you used for computational work available in an immutable, persistent way and to have an identifier that allows people to cite and give you credit for the work you have done. <a href="https://zenodo.org/">Zenodo</a> provides this functionality.</p>
+
+<p>Zenodo supports the archiving of <em>tar</em> archives and we can capture our Docker images as tar archives using the <code class="language-plaintext highlighter-rouge">docker save</code> command.
+For example, to export the image we created earlier in this lesson:</p>
+
+<div class="language-plaintext bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker save alice/alpine-python:v1 -o alpine-python.tar
+</code></pre></div></div>
+
+<p>These tar images can become quite large and Zenodo supports uploads up to 50GB so you may need to compress your archive to make it fit on Zenodo using a tool such as gzip (or zip):</p>
+
+<div class="language-plaintext bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gzip alpine-python.tar
+</code></pre></div></div>
+
+<p>Once you have your archive, you can <a href="https://zenodo.org/deposit/">deposit it on Zenodo</a> and this will:</p>
+
+<ul>
+  <li>Create a long-term archive snapshot of your Docker image which people (including your future self) can download and reuse or reproduce your work.</li>
+  <li>Create a persistent DOI (<em>Digital Object Identifier</em>) that you can cite in any publications or outputs to enable reproducibility and recognition of your work.</li>
+</ul>
+
+<p>In addition to the archive file itself, the deposit process will ask you to provide some basic metadata to classify the image and the associated work.</p>
+
+<p>Note that Zenodo is not the only option for archiving and generating persistent DOIs for images. There are other services out there - for example, some organizations may provide their own, equivalent, service.</p>
+
+<h2 id="reproducibility-good-practice">Reproducibility good practice</h2>
+
+<ul>
+  <li>Make use of images to capture the computational environment required for your work.</li>
+  <li>Decide on the appropriate granularity for the images you will use for your computational work - this will be different for each project/area. Take note of accepted practice from contemporary work in the same area. What are the right building blocks for individual images in your work?</li>
+  <li>Document what you have done and why - this can be put in comments in the Dockerfile and the use of the image described in associated documentation and/or publications. Make sure that references are made in both directions so that the image and the documentation are appropriately linked.</li>
+  <li>When you publish work (in whatever way) use an archiving and DOI service such as Zenodo to make sure your image is captured as it was used for the work and that is obtains a persistent DOI to allow it to be cited and referenced properly.</li>
+</ul>
+
+<h2 id="container-granularity">Container Granularity</h2>
+
+<p>As mentioned above, one of the decisions you may need to make when containerising your research workflows
+is what level of <em>granularity</em> you wish to employ. The two extremes of this decision could be characterised
+as:</p>
+
+<ul>
+  <li>Create a single container image with all the tools you require for your research or analysis workflow</li>
+  <li>Create many container images each running a single command (or step) of the workflow and use them in
+sequence</li>
+</ul>
+
+<p>Of course, many real applications will sit somewhere between these two extremes.</p>
+
+<blockquote class="challenge">
+  <h2 id="positives-and-negatives">Positives and negatives</h2>
+  <p>What are the advantages and disadvantages of the two approaches to container granularity for research
+workflows described above? Think about this
+and write a few bullet points for advantages and disadvantages for each approach in the course Etherpad.</p>
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+    <p>This is not an exhaustive list but some of the advantages and disadvantages could be:</p>
+    <h3 id="single-large-container">Single large container</h3>
+    <ul>
+      <li>Advantages:
+        <ul>
+          <li>Simpler to document</li>
+          <li>Full set of requirements packaged in one place</li>
+          <li>Potentially easier to maintain (though could be opposite if working with large, distributed group)</li>
+        </ul>
+      </li>
+      <li>Disadvantages:
+        <ul>
+          <li>Could get very large in size, making it more difficult to distribute
+            <ul>
+              <li>Could use Docker multi-stage build docs.docker.com/develop/develop-images/multistage-build to reduce size</li>
+              <li>Singularity also has a multistage build feature: sylabs.io/guides/3.2/user-guide/definition_files.html#multi-stage-builds</li>
+            </ul>
+          </li>
+          <li>May end up with same dependency issues within the container from different software requirements</li>
+          <li>Potentially more complex to test</li>
+          <li>Less re-useable for different, but related, work</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="multiple-smaller-containers">Multiple smaller containers</h3>
+    <ul>
+      <li>Advantages:
+        <ul>
+          <li>Individual components can be re-used for different, but related, work</li>
+          <li>Individual parts are smaller in size making them easier to distribute</li>
+          <li>Avoid dependency issues between different softwares</li>
+          <li>Easier to test</li>
+        </ul>
+      </li>
+      <li>Disadvantage:
+        <ul>
+          <li>More difficult to document</li>
+          <li>Potentially more difficult to maintain (though could be easier if working with large, distributed group)</li>
+          <li>May end up with dependency issues between component containers if they get out of sync</li>
+        </ul>
+      </li>
+    </ul>
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="next-steps-with-containers">Next Steps With Containers</h2>
+
+  <p>Now that we’re at the end of the lesson material, take a moment to reflect on
+what you’ve learned, how it applies to you, and what to do next.</p>
+
+  <ol>
+    <li>In your own notes, write down or diagram your understanding of Docker Containers:
+concepts, commands, and how they work.</li>
+    <li>In the workshop’s shared notes document, write down how you think you might
+use containers in your daily work. If there’s something you want to try doing with
+containers right away, what is a next step after this workshop to make that happen?</li>
+  </ol>
+
+</blockquote>
+
+<h3 id="container-orchestration">Container Orchestration</h3>
+
+<p>Although you can certainly manage research workflows that use multiple containers manually, there are a number of
+container orchestration tools that you may find useful when managing workflows that use multiple containers.
+We won’t go in depth on using these tools in this lesson but instead briefly describe
+a few options and point to useful resources on using these tools to allow you to explore them yourself.</p>
+
+<ul>
+  <li>Docker Compose</li>
+  <li>Kubernetes</li>
+  <li>Docker Swarm</li>
+</ul>
+
+<blockquote class="callout">
+  <h2 id="the-wild-west">The Wild West</h2>
+  <p>Use of container orchestration tools for research workflows is a relatively new concept and so there
+is not a huge amount of documentation and experience out there at the moment. You may need to search
+around for useful information or, better still, contact your
+<a href="https://society-rse.org/community/rse-groups/">friendly neighbourhood RSE</a> to discuss what you want to do.</p>
+</blockquote>
+
+<p><strong>Docker Compose</strong> provides a way of constructing a unified workflow (or service) made up of multiple
+individual Docker containers. In addition to the individual Dockerfiles for each container, you provide
+a higher-level configuration file which describes the different containers and how they link together
+along with shared storage definitions between the containers. Once this high-level configuration has been
+defined, you can use single commands to start and stop the orchestrated set of containers.</p>
+
+<ul>
+  <li><a href="https://www.degruyter.com/view/journals/jib/14/2/article-20170016.xml">Using Docker Compose for the Simple Deployment of an Integrated Drug Target Screening Platform</a></li>
+  <li><a href="https://docs.docker.com/compose/">Docker Compose Overview</a></li>
+</ul>
+
+<p><strong>Kubernetes</strong> is an open source framework that provides similar functionality to Docker Compose. Its
+particular strengths are that is platform independent and can be used with many different container
+technologies and that it is widely available on cloud platforms so once you have implemented your workflow
+in Kubernetes it can be deployed in different locations as required. It has become the de facto standard
+for container orchestration.</p>
+
+<ul>
+  <li><a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">What is Kubernetes</a></li>
+</ul>
+
+<p><strong>Docker Swarm</strong> provides a way to scale out to multiple copies of similar containers. This potentially
+allows you to parallelise and scale out your research workflow so that you can run multiple copies and
+increase throughput. This would allow you, for example, to take advantage of multiple cores on a local
+system or run your workflow in the cloud to access more resources. Docker Swarm uses the concept of
+a manager container and worker containers to implement this distribution.</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/engine/swarm/">Docker Swarm Overview</a></li>
+</ul>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Container images allow us to encapsulate the computation (and data) we have used in our research.</p>
+</li>
+    
+    <li><p>Using a service such as Docker Hub allows us to easily share computational work we have done.</p>
+</li>
+    
+    <li><p>Using container images along with a DOI service such as Zenodo allows us to capture our work and enables reproducibility.</p>
+</li>
+    
+    <li><p>Tools such as Docker Compose, Docker Swarm and Kubernetes allow us to describe how multiple containers work together.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/06-containers-for-continuous-integration/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/08-docker-compose/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/07-reproducibility.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>
