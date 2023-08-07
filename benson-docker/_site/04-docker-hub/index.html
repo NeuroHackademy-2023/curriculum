@@ -1,0 +1,638 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Finding Containers on the Docker Hub &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/04-docker-hub.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/03-running-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/04b-managing-containers/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Finding Containers on the Docker Hub</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br/>
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>What is the Docker Hub, and why is it useful?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how the Docker Hub augments Docker use.</p>
+</li>
+	
+	<li><p>Explore the Docker Hub webpage for a popular Docker image.</p>
+</li>
+	
+	<li><p>Find the list of tags for a particular Docker image.</p>
+</li>
+	
+	<li><p>Identify the three components of a container’s identifier.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>In the previous episode, we ran a few different containers: <code class="language-plaintext highlighter-rouge">hello-world</code>, <code class="language-plaintext highlighter-rouge">alpine</code>,
+and maybe <code class="language-plaintext highlighter-rouge">busybox</code>. Where did these containers come from?  The Docker Hub!</p>
+
+<h2 id="introducing-the-docker-hub">Introducing the Docker Hub</h2>
+
+<p>The Docker Hub is an online repository of container images, a vast number of which are publicly available. A large number of the images are curated by the developers of the software that they package. Also, many commonly used pieces of software that have been containerised into images are specifically endorsed, which means that you can trust the containers to have been checked for functionality, stability, and that they don’t contain malware.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-can-be-used-without-connecting-to-the-docker-hub">Docker can be used without connecting to the Docker Hub</h2>
+
+  <p>Note that while the Docker Hub is well integrated into Docker functionality, the Docker Hub is certainly not required for all types of use of Docker containers. For example, some organisations may run container infrastructure that is entirely disconnected from the Internet.</p>
+</blockquote>
+
+<h2 id="exploring-an-example-docker-hub-page">Exploring an Example Docker Hub Page</h2>
+
+<p>As an example of a Docker Hub page, let’s explore the page for the python language. The most basic form of containerised python is in the “python” image (which is endorsed by the Docker team). Open your web browser to <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a> to see what is on a typical Docker hub software page.</p>
+
+<p>The top-left provides information about the name, short description, popularity (i.e., over a billion downloads in the case of this image), and endorsements.</p>
+
+<p>The top-right provides the command to pull this image to your computer.</p>
+
+<p>The main body of the page contains many used headings, such as:</p>
+<ul>
+  <li>Which tags (i.e., image versions) are supported;</li>
+  <li>Summary information about where to get help, which computer architectures are supported, etc.;</li>
+  <li>A longer description of the package;</li>
+  <li>Examples of how to use the image; and</li>
+  <li>The licence that applies.</li>
+</ul>
+
+<p>At least in my experience, the “Examples of how to use the image” section of most images’ pages will provide examples that are likely to adequately cover your intended use of the image.</p>
+
+<h2 id="exploring-image-versions">Exploring Image Versions</h2>
+
+<p>A single Docker Hub page can have many different versions of container images,
+based on the version of the software inside.  These
+versions are indicated by “tags”. When referring to the specific version of a container
+by its tag, you use a colon, <code class="language-plaintext highlighter-rouge">:</code>, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINERNAME:TAG
+</code></pre></div></div>
+
+<p>So if I wanted to download the <code class="language-plaintext highlighter-rouge">python</code> container, with Python 3.8, I would use this name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull python:3.8
+</code></pre></div></div>
+
+<p>But if I wanted to download a Python 3.6 container, I would use this name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull python:3.6
+</code></pre></div></div>
+
+<p>The default tag (which is used if you don’t specify one) is called <code class="language-plaintext highlighter-rouge">latest</code>.</p>
+
+<p>So far, we’ve only seen containers that are maintained by the Docker team. However,
+it’s equally common to use containers that have been produced by individual owners
+or organizations. Containers that you create and upload to Docker Hub would fall
+into this category, as would the containers maintained by organizations like
+<a href="https://hub.docker.com/u/continuumio">ContinuumIO</a> (the folks who develop the Anaconda Python environment) or community
+groups like <a href="https://hub.docker.com/u/rocker">rocker</a>, a group that builds community R containers.</p>
+
+<p>The name for these group- or individually-managed containers have this format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OWNER/CONTAINERNAME:TAG
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="repositories">Repositories</h2>
+
+  <p>The technical name for the contents of a Docker Hub page is a “repository.”
+The tag indicates the specific version of the container image that you’d like
+to use from a particular repository. So a slightly more accurate version of
+the above example is:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OWNER/REPOSITORY:TAG
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="whats-in-a-name">What’s in a name?</h2>
+
+  <p>How would I download the Docker container produced by the <code class="language-plaintext highlighter-rouge">rocker</code> group that
+has version 3.6.1 of R and the tidyverse installed?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>First, search for <code class="language-plaintext highlighter-rouge">rocker</code> in Docker Hub. Then look for their <code class="language-plaintext highlighter-rouge">tidyverse</code> image.
+You can look at the list of tags, or just guess that the tag is <code class="language-plaintext highlighter-rouge">3.6.1</code>. Altogether,
+that means that the name of the container we want to download is:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull rocker/tidyverse:3.6.1
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<h2 id="many-different-containers">Many Different Containers</h2>
+
+<p>There are many different containers on Docker Hub. This is where the real advantage
+of using containers shows up – each container represents a complete software
+installation that you can use and access without any extra work!</p>
+
+<p>The easiest way to find containers is to search on Docker Hub, but sometimes
+software pages have a link to their containers from their home page.</p>
+
+<blockquote class="challenge">
+  <h2 id="what-container-is-right-for-you">What container is right for you?</h2>
+
+  <p>Find a Docker container that’s relevant to you. If you’re unsuccessful in your search,
+or don’t know what to look for, you can use the R or Python containers we’ve
+already seen.</p>
+
+  <p>Once you find a container, use the skills from the previous episode to download
+the image and explore it.</p>
+</blockquote>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The Docker Hub is an online repository of container images.</p>
+</li>
+    
+    <li><p>Many Docker Hub images are public, and may be officially endorsed.</p>
+</li>
+    
+    <li><p>Each Docker Hub page about an image provides structured information and subheadings</p>
+</li>
+    
+    <li><p>Most Docker Hub pages about images contain sections that provide examples of how to use those images.</p>
+</li>
+    
+    <li><p>Many Docker Hub images have multiple versions, indicated by tags.</p>
+</li>
+    
+    <li><p>The naming convention for Docker containers is: <code class="language-plaintext highlighter-rouge">OWNER/CONTAINER:TAG</code></p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/03-running-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/04b-managing-containers/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/04-docker-hub.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,685 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Introduction to docker-compose &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/08-docker-compose.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/07-reproducibility/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Introduction to docker-compose</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br/>
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I simplify the use of Docker containers for my users?</p>
+</li>
+	
+	<li><p>How can synchronize multiple Docker containers together?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Be able to use a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to document and simplify the use of a container.</p>
+</li>
+	
+	<li><p>Understand how <code class="language-plaintext highlighter-rouge">docker-compose</code> can be used to start multiple containers that depend on each other.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h3 id="before-we-start">Before we start…</h3>
+<p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> tool is one of a number of tools for organizing containers, and it is evolving rapidly. In this lesson, we will focus on uses of <code class="language-plaintext highlighter-rouge">docker-compose</code> that arise commonly when developing reproducible computations. This is just one set of ways that <code class="language-plaintext highlighter-rouge">docker-compose</code> can be used, however. In industry, for example, <code class="language-plaintext highlighter-rouge">docker-compose</code> is often used to manage the elastic coordination of cloud computing nodes that host web-services.</p>
+
+<h3 id="docker-compose-can-simplify-the-use-of-docker-containers"><code class="language-plaintext highlighter-rouge">docker-compose</code> can simplify the use of Docker containers</h3>
+<p>By this point, we’ve seen that the <code class="language-plaintext highlighter-rouge">docker</code> command is a powerful tool for interacting with containers and container images. It can be used to build containers, pull containers from DockerHub, and to run containers. We have also seen how a <code class="language-plaintext highlighter-rouge">Dockerfile</code> can encode a specific set of instructions that the <code class="language-plaintext highlighter-rouge">docker build</code> command can use to create a particular software environment in a container image. A frequent tactic for software projects is to include a <code class="language-plaintext highlighter-rouge">Dockerfile</code> in the project’s GitHub repository root. This file generally creates a container image that is capable of supporting the software in the repository so that developers and users who download the software from GitHub can easily run it.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-compose-is-an-official-part-of-docker">docker-compose is an official part of docker…</h2>
+  <p>There are many tools for orchestrating and managing containers, but a
+particular advantage of <code class="language-plaintext highlighter-rouge">docker-compose</code> is that anyone who has Docker
+installed should be able to use <code class="language-plaintext highlighter-rouge">docker-compose</code> as well. This is a big
+advantage if your goal is to simplify the process of building and running a
+container.</p>
+</blockquote>
+
+<p>For example, suppose I am working on a team that is developing a Linux-based data analysis tool, but I only have a Windows machine. In order for me to test the code I’ve written, I will need to be able to run it on a Linux machine. A simple fix would be for us to include a Dockerfile that encodes all the software dependencies of the project on top of a Linux image such as the <code class="language-plaintext highlighter-rouge">alpine</code> Docker image we have used in previous lessons. Then, whenever I needed to test my code, I can use <code class="language-plaintext highlighter-rouge">docker run</code> to start the container and test my code.</p>
+
+<p>Although this approach is very valuable, a frequent difficulty is that, in order to use software in this manner, one must be familiar enough with Docker to correctly run both the <code class="language-plaintext highlighter-rouge">docker build</code> and the <code class="language-plaintext highlighter-rouge">docker run</code> commands. These commands can be intimidating for inexperienced users, and for complex containers, they can themselves be very long.</p>
+
+<p>One way to simplify the process of building and running a container for an end-user is to write a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file. Such a file can be used to document the way that a container is intended to be built and run. In this lesson, we will demonstrate how to do this with the <code class="language-plaintext highlighter-rouge">alpine-sum</code> Docker image we created in an earlier lesson.</p>
+
+<h3 id="creating-our-first-docker-composeyml-file">Creating our first <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file</h3>
+<p>We will start by revisiting our <code class="language-plaintext highlighter-rouge">alpine-sum</code> <code class="language-plaintext highlighter-rouge">Dockerfile</code> from the <a href="http://0.0.0.0:4000/05b-advanced-containers/index.html">Advanced Containers</a> lesson. At the end of that lesson, we had a <code class="language-plaintext highlighter-rouge">Dockerfile</code> that looked like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+# set script permissions
+RUN chmod +x /home/sum.py
+# add /home folder to the PATH
+ENV PATH /home:$PATH
+
+RUN apk add --update python3 py3-pip python3-dev
+
+ENTRYPOINT ["python3", "/home/sum.py"]
+
+CMD ["10", "11"]
+</code></pre></div></div>
+
+<p>In order to build this Docker image, we used the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v3 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v3 1 2 3 4
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command uses a file called, predictably enough, <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>. The <code class="language-plaintext highlighter-rouge">yml</code> at the end is sometimes <code class="language-plaintext highlighter-rouge">yaml</code> instead–both of these are endings for YAML files, which are text-based data files that use an intuitive format. Go ahead and use your favorite text editor to create a file <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> with the following text:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  alpine-sum:
+    build: .
+</code></pre></div></div>
+
+<p>Then, rather than building <strong>and</strong> running the container, we can use a single command. If you still have the <code class="language-plaintext highlighter-rouge">alpine-sum</code> Docker image built locally on your machine, however, you might want to run <code class="language-plaintext highlighter-rouge">docker image rm alpine-sum</code> before running the following command. The <code class="language-plaintext highlighter-rouge">image rm</code> command will delete the previous <code class="language-plaintext highlighter-rouge">alpine-sum</code> image so that you will be able to see whether the following command rebuilds the image:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run alpine-sum 1 2 3 4
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+ ---&gt; Running in a7a1806a67bb
+Removing intermediate container a7a1806a67bb
+ ---&gt; d595137a5db8
+Successfully built d595137a5db8
+Successfully tagged dockerintro_alpine-sum:latest
+WARNING: Image for service alpine-sum was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+sum = 10
+</code></pre></div></div>
+
+<p>Notice that if we run another command against the container, it won’t be rebuilt.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run alpine-sum 2 3 4 5
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum = 14
+</code></pre></div></div>
+
+<h3 id="the-docker-composeyml-file">The <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file</h3>
+<p>Let’s break down the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file we just created to better understand it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: 3.0
+</code></pre></div></div>
+
+<p>The first line of the file simply states the version of the <code class="language-plaintext highlighter-rouge">docker-compose</code> schema that we’re using. Note that this is the version of the syntax we are using in this file, not the version of <code class="language-plaintext highlighter-rouge">docker-compose</code> we are using.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services:
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">services</code> line is included in all <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> files. It tells <code class="language-plaintext highlighter-rouge">docker-compose</code> which containers are managed by this file. Although our <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file has only one container, it is possible for there to be multiple containers, all of which get started up when you use <code class="language-plaintext highlighter-rouge">docker-compose</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  alpine-sum:
+</code></pre></div></div>
+
+<p>The next line is indented in order to indicate that it is a sub-item under the <code class="language-plaintext highlighter-rouge">services</code> list (i.e., it is a service). We can give this service any name, but since we have been calling it <code class="language-plaintext highlighter-rouge">alpine-sum</code>, it is natural to keeep the same name.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    build: .
+</code></pre></div></div>
+
+<p>The final line is indented twice, indicating that it is part of the <code class="language-plaintext highlighter-rouge">alpine-sum</code> service. The <code class="language-plaintext highlighter-rouge">build</code> keyword indicates that the <code class="language-plaintext highlighter-rouge">alpine-sum</code> service should be built using the <code class="language-plaintext highlighter-rouge">docker build</code> command, and the <code class="language-plaintext highlighter-rouge">.</code> is simply an alias for the current directory (the directory containing the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file). We could have alternately used the <code class="language-plaintext highlighter-rouge">image</code> tag to declare a public image from DockerHub such as with the line `    image: alpine`.</p>
+
+<h3 id="using-docker-compose-to-run-a-server">Using <code class="language-plaintext highlighter-rouge">docker-compose</code> to run a server</h3>
+<p>We’ve focused in these lessons on using Docker to run single commands. However, recall that when we started the Jekyll server earlier, the Docker container stayed running in order to host the lesson web-page. This is a common use-case for Docker, and in order to manage such a container, we can use the <code class="language-plaintext highlighter-rouge">docker-compose up</code> command in place of <code class="language-plaintext highlighter-rouge">docker-compose run</code>.</p>
+
+<p>To demonstrate this, let’s return to the <code class="language-plaintext highlighter-rouge">docker-introduction</code> directory that we created earlier when we downloaded and unzipped the <code class="language-plaintext highlighter-rouge">docker-introduction</code> data.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>docker-introduction-gh-pages
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AUTHORS			_episodes		code
+CITATION		_episodes_rmd		data
+CODE_OF_CONDUCT.md	_extras			fig
+CONTRIBUTING.md		_includes		files
+LICENSE.md		_layouts		index.md
+Makefile		aio.md			reference.md
+README.md		assets			setup.md
+_config.yml		bin
+</code></pre></div></div>
+
+<p>Previously, we used a somewhat long <code class="language-plaintext highlighter-rouge">docker run</code> command in order to start the Jekyll server here. This command (for Mac and Linux) was:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">--rm</span> <span class="nt">-it</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>Let’s create a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to manage this particular server. Each of the options in the above command line has a related keyword that can be used in the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, but we’ll start with a simple YAML file.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">my-jekyll-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">jekyll/jekyll:pages</span>
+</code></pre></div></div>
+
+<p>This file is much like our earlier <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, with the exception that it uses an <code class="language-plaintext highlighter-rouge">image:</code> tag to declare that the Docker image for the <code class="language-plaintext highlighter-rouge">my-jekyll-server</code> service should be started from the <code class="language-plaintext highlighter-rouge">jekyll/jekyll:pages</code> image obtained from DockerHub. In fact, we can go ahead and use this <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, but since it only stores the name of the image, it won’t simplify the command-line very much.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run <span class="nt">--rm</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 my-jekyll-server jekyll serve
+</code></pre></div></div>
+
+<p>(Don’t forget that you can push control-C to exit out of the Jekyll-server container.) In the above line, we no longer need to specify the container name; however, we still have to specify everything else, including the name of the service (<code class="language-plaintext highlighter-rouge">my-jekyll-server</code>).</p>
+
+<p>What would really be useful in this situation is if we could store some of the command-line options, like the port specification (<code class="language-plaintext highlighter-rouge">-p 127.0.0.1:4000:4000</code>) or the volumes specification <code class="language-plaintext highlighter-rouge">-v ${PWD}:/srv/jekyll</code> in the YAML file. Fortunately, we can! Docker compose supports a number of options for its services, including the <code class="language-plaintext highlighter-rouge">volumes:</code>, the <code class="language-plaintext highlighter-rouge">ports:</code>, and the <code class="language-plaintext highlighter-rouge">command:</code> keywords. Let’s edit the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to include these.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">my-jekyll-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">jekyll/jekyll:pages</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">${PWD}:/srv/jekyll"</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">127.0.0.1:4000:4000"</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">jekyll serve</span>
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="why-do-some-lines-start-with-a-dash">Why do some lines start with a dash?</h2>
+  <p>Notice in the above <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, the <code class="language-plaintext highlighter-rouge">volumes:</code> and <code class="language-plaintext highlighter-rouge">ports:</code>
+keywords are followed by a line that starts with indentation then a <code class="language-plaintext highlighter-rouge">-</code>.
+This is because both of these keywords can accept lists–i.e., you can
+specify multiple volumes and multiple ports for each service. Each such
+entry begins with an indentation then <code class="language-plaintext highlighter-rouge">-</code>.</p>
+</blockquote>
+
+<p>Let’s go ahead and test this out. Now that we have declared all of these details, we can start the Jekyll server with just the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose up
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Creating dockerintroduction_my-jekyll-server_1 ... 
+Creating dockerintroduction_my-jekyll-server_1 ... done
+Attaching to dockerintroduction_my-jekyll-server_1
+my-jekyll-server_1  | ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux-musl]
+my-jekyll-server_1  | Configuration file: /src/jekyll/_config.yml
+my-jekyll-server_1  |             Source: /srv/jekyll
+my-jekyll-server_1  |        Destination: /srv/jekyll/_site
+my-jekyll-server_1  |  Incremental build: disabled. Enable with --incremental
+my-jekyll-server_1  |       Generating... 
+my-jekyll-server_1  |                     done in 1.048 seconds.
+my-jekyll-server_1  |  Auto-regeneration: enabled for '/srv/jekyll'
+my-jekyll-server_1  |     Server address: http://0.0.0.0:4000
+my-jekyll-server_1  |   Server running... press ctrl-c to stop.
+</code></pre></div></div>
+
+<p>As you can hopefully see, this command successfully started the Jekyll server!</p>
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command is intended to coordinate multiple containers that work together.</p>
+</li>
+    
+    <li><p><code class="language-plaintext highlighter-rouge">docker-compose</code> can also document and automate the way a single container is invoked.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command reads its configuration from a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/07-reproducibility/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/08-docker-compose.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,583 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Containers used in generating this lesson &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/06-containers-for-continuous-integration.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/05b-advanced-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/07-reproducibility/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Containers used in generating this lesson</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br/>
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can containers be useful to me for building websites?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Demonstrate how to construct a website using containers to transform a specification into a fully-presented website.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>The website for this lesson is generated mechanically, based on a set of files that specify the configuration of the site, its presentation template, and the content to go on this page. This is far more manageable than editing each webpage of the lesson separately, for example, if the page header needs to change, this change can be made in one place, and all the pages regenerated. The alternative would be needing to edit each page to repeat the change: this is not productive or suitable work for humans to do!</p>
+
+<p>In your shell window, in your <code class="language-plaintext highlighter-rouge">docker-intro</code> create a new directory <code class="language-plaintext highlighter-rouge">build-website</code> and <code class="language-plaintext highlighter-rouge">cd</code> into it. We will later be expanding a ZIP file into this directory later.</p>
+
+<p>Now open a web browser window and:</p>
+<ol>
+  <li>Navigate to the GitHub repository that contains the files for this session, at <a href="https://github.com/richford/docker-introduction/">https://github.com/richford/docker-introduction/</a>;</li>
+  <li>Click the green “Clone or download” button on the right-hand side of the page;</li>
+  <li>Click “Download ZIP”.</li>
+  <li>The downloaded ZIP file should contain one directory named <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code>.</li>
+  <li>Move the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> folder into the <code class="language-plaintext highlighter-rouge">build-website</code> folder you created above.</li>
+</ol>
+
+<blockquote class="callout">
+  <h2 id="there-are-many-ways-to-work-with-zip-files">There are many ways to work with ZIP files</h2>
+  <p>Note that the last two steps can be achieved using a Mac or Windows graphical user interface. There are also ways to effect expanding the ZIP archive on the command line, for example, on my Mac I can achieve the effect of those last two steps through running the command <code class="language-plaintext highlighter-rouge">unzip ~/Downloads/docker-introduction-gh-pages.zip</code>.</p>
+</blockquote>
+
+<p>In your shell window, if you <code class="language-plaintext highlighter-rouge">cd</code> into the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> folder and list the files, you should see something similar to what I see:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>docker-introduction-gh-pages
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AUTHORS			_episodes		code
+CITATION		_episodes_rmd		data
+CODE_OF_CONDUCT.md	_extras			fig
+CONTRIBUTING.md		_includes		files
+LICENSE.md		_layouts		index.md
+Makefile		aio.md			reference.md
+README.md		assets			setup.md
+_config.yml		bin
+</code></pre></div></div>
+
+<p>You can now request that a container is created that will compile the files in this set into the lesson website, and will run a simple webserver to allow you to view your version of the website locally. Note that this command will be long and fiddly to type, so you probably want to copy-and-paste it into your shell window. This command will continue to (re-)generate and serve up your version of the lesson website, so you will not get your shell prompt back until you type <kbd>control</kbd>+<kbd>c</kbd>. This will stop the webserver, since it cleans away the container.</p>
+
+<blockquote class="callout">
+  <h2 id="if-you-happen-to-have-the-make-tool-already-installed">If you happen to have the <code class="language-plaintext highlighter-rouge">make</code> tool already installed…</h2>
+  <p>We are taking an atypical approach in using the command that follows, since you are not required to have set up the <code class="language-plaintext highlighter-rouge">make</code> tool on your computer. However you may want to see whether you happen to have <code class="language-plaintext highlighter-rouge">make</code> installed anyway, by typing <code class="language-plaintext highlighter-rouge">make docker-serve</code> instead of the command below. At worst, this will fail and you can use the command shown below.</p>
+</blockquote>
+
+<p>For macOS, Linux and PowerShell:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">--rm</span> <span class="nt">-it</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>For <code class="language-plaintext highlighter-rouge">cmd.exe</code> shells on Microsoft Windows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker run --rm -it -v "%CD%":/srv/jekyll -p 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>When I ran the macOS command, the output was as follows:</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unable to find image 'jekyll/jekyll:pages' locally
+pages: Pulling from jekyll/jekyll
+cbdbe7a5bc2a: Already exists 
+aa8ae8202b42: Already exists 
+b21786fe7c0d: Already exists 
+68296e6645b2: Already exists 
+6b1c37303e2d: Already exists 
+4d49f4d60e44: Pull complete 
+Digest: sha256:3741cb6d48b1ed3c544db4af9e2485fba31ddb5c2deb83a93b33fd252e8e2768
+Status: Downloaded newer image for jekyll/jekyll:pages
+ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux-musl]
+Configuration file: /srv/jekyll/_config.yml
+            Source: /srv/jekyll
+       Destination: /srv/jekyll/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+      Remote Theme: Using theme carpentries/carpentries-theme
+                    done in 2.996 seconds.
+ Auto-regeneration: enabled for '/srv/jekyll'
+    Server address: http://0.0.0.0:4000
+  Server running... press ctrl-c to stop.
+</code></pre></div></div>
+
+<p>In the preceding output, you see Docker downloading the image for Jekyll, which is a tool for building websites from specification files such as those used for this lesson. The line <code class="language-plaintext highlighter-rouge">jekyll serve</code> indicates a command that runs within the Docker container instance. The output below that is from the Jekyll tool itself, highlighting that the website has been built, and indicating that there is a server running.</p>
+
+<p>Open a web browser window and visit the address <a href="http://localhost:4000/">http://localhost:4000/</a>. You should see a site that looks very similar to that at <a href="https://richford.github.io/docker-introduction/">https://richford.github.io/docker-introduction/</a>.</p>
+
+<p>Using a new shell window, or using your laptop’s GUI, locate the file <code class="language-plaintext highlighter-rouge">index.md</code> within the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> directory, and open it in your preferred editor program.</p>
+
+<p>Near the top of this file you should see the description starting “This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments.” Make a change to this message, and save the file.</p>
+
+<p>If you reload your web browser, the change that you just made should be visible. This is because the Jekyll container saw that you changed the <code class="language-plaintext highlighter-rouge">index.md</code> file, and regenerated the website.</p>
+
+<p>You can stop the Jekyll container by clicking in its terminal window and typing <kbd>control</kbd>+<kbd>c</kbd>.</p>
+
+<p>You have now achieved using a reproducible computational environment to reproduce a lesson about reproducible computing environments.</p>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The generation of this lesson website can be effected using a container.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/05b-advanced-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/07-reproducibility/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/06-containers-for-continuous-integration.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

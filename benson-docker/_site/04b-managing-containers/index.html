@@ -1,0 +1,605 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Cleaning Up Containers &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/04b-managing-containers.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/04-docker-hub/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/05-creating-container-images/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Cleaning Up Containers</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br/>
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How do I interact with a Docker container on my computer?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how to list running and completed containers.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h2 id="removing-images">Removing images</h2>
+
+<p>The images and their corresponding containers can start to take up a lot of disk space if you don’t clean them up occasionally, so it’s a good idea to periodically remove container images that you won’t be using anymore.</p>
+
+<p>In order to remove a specific image, you need to find out details about the image,
+specifically, the “image ID”. For example say my laptop contained the following image.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REPOSITORY       TAG         IMAGE ID       CREATED          SIZE
+hello-world      latest      fce289e99eb9   15 months ago    1.84kB
+</code></pre></div></div>
+
+<p>You can remove the image with a <code class="language-plaintext highlighter-rouge">docker image rm</code> command that includes the image ID, such as:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>fce289e99eb9
+</code></pre></div></div>
+
+<p>or use the image name, like so:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>hello-world
+</code></pre></div></div>
+
+<p>However, you may see this output:</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container e7d3b76b00f4 is using its referenced image fce289e99eb9
+</code></pre></div></div>
+
+<p>This happens when Docker hasn’t cleaned up some of the times when a container
+has been actually run. So before removing the container image, we need to be able
+to see what containers are currently running, or have been run recently, and how
+to remove these.</p>
+
+<h2 id="what-containers-are-running">What containers are running?</h2>
+
+<p>Working with containers, we are going to shift to a new docker command: <code class="language-plaintext highlighter-rouge">docker container</code>.  Similar to <code class="language-plaintext highlighter-rouge">docker image</code>, we can list running containers by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div></div>
+
+<p>Notice that this command didn’t return any containers because our containers all exited and thus stopped running after they completed their work.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-ps"><code class="language-plaintext highlighter-rouge">docker ps</code></h2>
+
+  <p>The command <code class="language-plaintext highlighter-rouge">docker ps</code> serves the same purpose as <code class="language-plaintext highlighter-rouge">docker container ls</code>, and comes
+from the Unix shell command <code class="language-plaintext highlighter-rouge">ps</code> which describes running processes.</p>
+</blockquote>
+
+<h2 id="what-containers-have-run-recently">What containers have run recently?</h2>
+
+<p>There is also a way to list running containers, and those that have completed recently, which is to add the <code class="language-plaintext highlighter-rouge">--all</code>/<code class="language-plaintext highlighter-rouge">-a</code> flag to the <code class="language-plaintext highlighter-rouge">docker container ls</code> command as shown below.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls</span> <span class="nt">--all</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+9c698655416a        hello-world         "/hello"            2 minutes ago       Exited (0) 2 minutes ago                       zen_dubinsky
+6dd822cf6ca9        hello-world         "/hello"            3 minutes ago       Exited (0) 3 minutes ago                       eager_engelbart
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="keeping-it-clean">Keeping it clean</h2>
+
+  <p>You might be surprised at the number of containers Docker is still keeping track of.
+One way to prevent this from happening is to add the <code class="language-plaintext highlighter-rouge">--rm</code> flag to <code class="language-plaintext highlighter-rouge">docker run</code>. This
+will completely wipe out the record of the run container when it exits. If you need
+a reference to the running container for any reason, <strong>don’t</strong> use this flag.</p>
+</blockquote>
+
+<h2 id="how-do-i-remove-an-exited-container">How do I remove an exited container?</h2>
+
+<p>To delete an exited container you can run the following command, inserting the <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> for the container you wish to remove.
+It will repeat the <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> back to you, if successful.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">rm </span>9c698655416a
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9c698655416a
+</code></pre></div></div>
+
+<p>If you want to remove all exited containers at once you can use the <code class="language-plaintext highlighter-rouge">docker containers prune</code> command.
+<strong>Be careful</strong> with this command.
+If you have containers you may want to reconnect to, you should not use this command.
+It will ask you if to confirm you want to remove these containers, see output below.
+If successfull it will print the full <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> back to you.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container prune
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+9c698655416a848278d16bb1352b97e72b7ea85884bff8f106877afe0210acfc
+6dd822cf6ca92f3040eaecbd26ad2af63595f30bb7e7a20eacf4554f6ccc9b2b
+</code></pre></div></div>
+
+<h2 id="removing-images-for-real-this-time">Removing images, for real this time</h2>
+
+<p>Now that we’ve removed any potentially running or stopped containers, we can try again to
+delete the <code class="language-plaintext highlighter-rouge">hello-world</code> <strong>image</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>hello-world
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Untagged: hello-world:latest
+Untagged: hello-world@sha256:5f179596a7335398b805f036f7e8561b6f0e32cd30a32f5e19d17a3cda6cc33d
+Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
+Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
+</code></pre></div></div>
+
+<p>The reason that there are a few lines of output, is that a given image may have been formed by merging multiple underlying layers.
+Any layers that are used by multiple Docker images will only be stored once.
+Now the result of <code class="language-plaintext highlighter-rouge">docker image ls</code> should no longer include the <code class="language-plaintext highlighter-rouge">hello-world</code> image.</p>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker container ls</code> command lists containers that have been created.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/04-docker-hub/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/05-creating-container-images/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/04b-managing-containers.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

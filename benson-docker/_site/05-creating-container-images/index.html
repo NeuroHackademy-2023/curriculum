@@ -1,0 +1,818 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Creating your own container images &ndash; Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//_episodes/05-creating-container-images.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/04b-managing-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="/">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/05b-advanced-containers/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Creating your own container images</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br/>
+      <strong>Exercises:</strong> 15 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I make my own Docker images?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain the purpose of a <code class="language-plaintext highlighter-rouge">Dockerfile</code> and show some simple examples.</p>
+</li>
+	
+	<li><p>Demonstrate how to build a Docker image from a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+	
+	<li><p>Compare the steps of creating a container interactively versus a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+	
+	<li><p>Create an installation strategy for a container</p>
+</li>
+	
+	<li><p>Demonstrate how to upload (‘push’) your container images to the Docker Hub.</p>
+</li>
+	
+	<li><p>Describe the significance of the Docker Hub naming scheme.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>There are lots of reasons why you might want to create your <strong>own</strong> Docker image.</p>
+<ul>
+  <li>You can’t find a container with all the tools you need on Docker Hub.</li>
+  <li>You want to have a container to “archive” all the specific software versions you ran for a project</li>
+  <li>You want to share your workflow with someone else.</li>
+</ul>
+
+<h2 id="interactive-installation">Interactive installation</h2>
+
+<p>Before creating a reproducible installation, let’s experiment with installing
+software inside a container. Start the <code class="language-plaintext highlighter-rouge">alpine</code> container from before, interactively:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alpine sh
+</code></pre></div></div>
+
+<p>Because this is a basic container, there’s a lot of things not installed – for
+example, <code class="language-plaintext highlighter-rouge">python3</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh: python3: not found
+</code></pre></div></div>
+
+<p>Inside the container, we can run commands to install Python3. The Alpine version of
+Linux has a installation tool called <code class="language-plaintext highlighter-rouge">apk</code> that we can use to install Python3.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# apk add <span class="nt">--update</span> python3 py3-pip python3-dev
+</code></pre></div></div>
+
+<p>We can test our installation by running a Python command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3 <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Once Python is installed, we can add Python packages using the pip package installer:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# pip <span class="nb">install </span>cython
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-searching-for-help">Exercise: Searching for Help</h2>
+
+  <p>Can you find instructions for installing R on Alpine Linux? Do they work?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>A quick search should hopefully show that the way to install R on Alpine Linux is:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# apk add R
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>Once we exit, these changes are not saved to a new container by default. There is
+a command that will “snapshot” our changes, but building containers this way is
+not very reproducible. Instead, we’re going to take what we’ve learned from this
+interactive installation and create our container from a reproducible recipe,
+known as a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+
+<p>If you haven’t already, exit out of the interactively running container.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">exit</span>
+</code></pre></div></div>
+
+<h2 id="put-installation-instructions-in-a-dockerfile">Put installation instructions in a <code class="language-plaintext highlighter-rouge">Dockerfile</code></h2>
+
+<p>A <code class="language-plaintext highlighter-rouge">Dockerfile</code> is a plain text file with keywords and commands that
+can be used to create a new container image.</p>
+
+<p>From your shell, go to the folder you downloaded at the start of the lesson
+and print out the Dockerfile inside:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/docker-intro/basic
+<span class="nv">$ </span><span class="nb">cat </span>Dockerfile
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM &lt;EXISTING IMAGE&gt;
+RUN &lt;INSTALL CMDS FROM SHELL&gt;
+RUN &lt;INSTALL CMDS FROM SHELL&gt;
+CMD &lt;CMD TO RUN BY DEFAULT&gt;
+</code></pre></div></div>
+
+<p>Let’s break this file down:</p>
+<ul>
+  <li>The first line, <code class="language-plaintext highlighter-rouge">FROM</code>, indicates which container we’re starting with.</li>
+  <li>The next two lines <code class="language-plaintext highlighter-rouge">RUN</code>, will indicate installation commands we want to run. These
+are the same commands that we used interactively above.</li>
+  <li>The last line, <code class="language-plaintext highlighter-rouge">CMD</code>, indicates the default command we want the
+container to run, if no other command is provided. It is recommended
+to provide <code class="language-plaintext highlighter-rouge">CMD</code> in <em>exec-form</em> (see the
+<a href="https://docs.docker.com/engine/reference/builder/#cmd"><code class="language-plaintext highlighter-rouge">CMD</code> section</a>
+of the Dockerfile documentation for more details). It is written as a
+list which contains the executable to run as its first element,
+optionally followed by any arguments as subsequent elements. The list
+is enclosed in square brackets (<code class="language-plaintext highlighter-rouge">[]</code>) and its elements are
+double-quoted (<code class="language-plaintext highlighter-rouge">"</code>) strings which are separated by commas. For
+example: <code class="language-plaintext highlighter-rouge">CMD ["ls", "-lF", "--color", "/etc"]</code></li>
+</ul>
+
+<blockquote class="callout">
+  <h2 id="shell-form-and-exec-form-for-cmd"><em>shell-form</em> and <em>exec-form</em> for CMD</h2>
+  <p>Another way to specify the parameter for the
+<a href="https://docs.docker.com/engine/reference/builder/#cmd"><code class="language-plaintext highlighter-rouge">CMD</code> instruction</a>
+is the <em>shell-form</em>. Here you type the command as you would call it
+from the command line. Docker then silently runs this command in the
+image’s standard shell.  <code class="language-plaintext highlighter-rouge">CMD cat /etc/passwd</code> is equivalent to <code class="language-plaintext highlighter-rouge">CMD
+["/bin/sh", "-c", "cat /etc/passwd"]</code>. We recommend to prefer the
+more explicit <em>exec-form</em> because we will be able to create more
+flexible container command options and make sure complex commands
+are unambiguous in this format.</p>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-take-a-guess">Exercise: Take a Guess</h2>
+
+  <p>Do you have any ideas about what we should use to fill in the sample Dockerfile
+to replicate the installation we did above?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution:</h2>
+    <p>Based on our experience above, edit the <code class="language-plaintext highlighter-rouge">Dockerfile</code> (in your text editor of choice)
+to look like this:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+RUN apk add --update python3 py3-pip python3-dev
+RUN pip install cython
+CMD ["python3", "--version"]
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>The recipe provided by this Dockerfile will use Alpine Linux as the base container,
+add Python and the Cython library, and set a default print command.</p>
+
+<h2 id="create-a-new-docker-image">Create a new Docker image</h2>
+
+<p>So far, we just have a file. We want Docker to take this file,
+run the install commands inside, and then save the
+resulting container as a new container image. To do this we will use the
+<code class="language-plaintext highlighter-rouge">docker build</code> command.</p>
+
+<p>We have to provide <code class="language-plaintext highlighter-rouge">docker build</code> with two pieces of information:</p>
+<ul>
+  <li>the location of the <code class="language-plaintext highlighter-rouge">Dockerfile</code></li>
+  <li>the name of the new image. Remember the naming scheme from before? You should name
+your new image with your Docker Hub username and a name for the container, like this:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  USERNAME/CONTAINERNAME
+</code></pre></div>    </div>
+    <p>All together, the build command will look like this:</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> USERNAME/CONTAINERNAME <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-t</code> option names the container; the final dot indicates that the <code class="language-plaintext highlighter-rouge">Dockerfile</code> is in
+our current directory.</p>
+
+<p>For example, if my user name was <code class="language-plaintext highlighter-rouge">alice</code> and I wanted to call my
+image <code class="language-plaintext highlighter-rouge">alpine-python</code>, I would use this command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alice/alpine-python <span class="nb">.</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-review">Exercise: Review!</h2>
+
+  <ol>
+    <li>
+      <p>Think back to earlier. What command can you run to check if your image was created
+successfully? (Hint: what command shows the images on your computer?)</p>
+    </li>
+    <li>
+      <p>We didn’t specify a tag for our image name. What did Docker automatically use?</p>
+    </li>
+    <li>
+      <p>What command will run the container you’ve created? What should happen by default
+if you run the container? Can you make it do something different, like print
+“hello world”?</p>
+    </li>
+  </ol>
+
+  <blockquote class="solution">
+    <h2 id="solution-2">Solution</h2>
+
+    <ol>
+      <li>
+        <p>To see your new image, run <code class="language-plaintext highlighter-rouge">docker image ls</code>. You should see the name of your new
+image under the “REPOSITORY” heading.</p>
+      </li>
+      <li>
+        <p>In the output of <code class="language-plaintext highlighter-rouge">docker image ls</code>, you can see that Docker has automatically
+used the <code class="language-plaintext highlighter-rouge">latest</code> tag for our new image.</p>
+      </li>
+      <li>
+        <p>We want to use <code class="language-plaintext highlighter-rouge">docker run</code> to run the container.</p>
+      </li>
+    </ol>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python
+</code></pre></div>    </div>
+    <p>should run the container and print out our default message, the version
+of Python.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python <span class="nb">echo</span> <span class="s2">"Hello World"</span>
+</code></pre></div>    </div>
+    <p>will run the container and print out “Hello world” instead.</p>
+  </blockquote>
+</blockquote>
+
+<p>While it may not look like you have achieved much, you have already effected the combination of a lightweight Linux operating system with your specification to run a given command that can operate reliably on macOS, Microsoft Windows, Linux and on the cloud!</p>
+
+<h2 id="boring-but-important-notes-about-installation">Boring but important notes about installation</h2>
+
+<p>There are a lot of choices when it comes to installing software - sometimes too many!
+Here are some things to consider when creating your own container:</p>
+
+<ul>
+  <li><strong>Start smart</strong>, or, don’t install everything from scratch! If you’re using Python
+as your main tool, start with a <a href="https://hub.docker.com/_/python">Python container</a>. Same with <a href="https://hub.docker.com/r/rocker/r-ver/">R</a>. We’ve used Alpine Linux as an example
+in this lesson, but it’s generally not a good container to start with because it is
+a less common version of Linux; using <a href="https://hub.docker.com/_/ubuntu">Ubuntu</a>, <a href="https://hub.docker.com/_/debian">Debian</a> and <a href="https://hub.docker.com/_/centos">CentOS</a> are all
+good options for scientific software installations. The program you’re using might
+recommend a particular version of Linux; if this happens, start with that particular
+Linux container.</li>
+  <li><strong>How big?</strong> How much software do you really need to install? When you have a choice,
+lean towards using smaller starting images and installing only what’s needed for
+your software, as a bigger image means longer download times to use.</li>
+  <li><strong>Know (or Google) your Linux</strong>. Each version of Linux has a special set of tools specifically for installing software. The <code class="language-plaintext highlighter-rouge">apk</code> command we used above is the installer for Alpine Linux. The installers for various common Linux versions are listed below:
+    <ul>
+      <li>Ubuntu: <code class="language-plaintext highlighter-rouge">apt</code> or <code class="language-plaintext highlighter-rouge">apt-get</code></li>
+      <li>Debian: <code class="language-plaintext highlighter-rouge">deb</code></li>
+      <li>CentOS: <code class="language-plaintext highlighter-rouge">yum</code>
+Most common software installations are available to be installed via these tools.
+Searching for “install X on Y Linux” is always a good start for common software
+installations; if something isn’t available via the Linux distribution’s installation
+tools, try the options below.</li>
+    </ul>
+  </li>
+  <li><strong>Use what you know</strong>. You’ve probably used commands like <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">install.packages()</code>
+before on your own computer – these will also work to install things in containers (if the basic scripting
+language is installed).</li>
+  <li><strong>README</strong>. Many scientific software tools have a README or installation instructions
+that lay out how to install software. You want to look for instructions for Linux. If
+the install instructions include options like those suggested above, try those first.</li>
+</ul>
+
+<p>In general, a good strategy for installing software is:</p>
+<ul>
+  <li>Make a list of what you want to install.</li>
+  <li>Look for pre-existing containers.</li>
+  <li>Read through instructions for software you’ll need to install.</li>
+  <li>Try installing everything interactively in your base container - take notes!</li>
+  <li>From your interactive installation, create a Dockerfile and then try to build
+the container again from that.</li>
+</ul>
+
+<blockquote>
+  <h2 id="todo-exercises">TODO: Exercises</h2>
+
+  <p>Have a set of “choose your own adventure” software installation examples</p>
+</blockquote>
+
+<h2 id="share-your-new-container-on-docker-hub">Share your new container on Docker Hub</h2>
+
+<p>Images that you release publicly can be stored on the Docker Hub for free.  If you
+name your image as described above, with your Docker Hub username, all you need to do
+is run the opposite of <code class="language-plaintext highlighter-rouge">docker pull</code> – <code class="language-plaintext highlighter-rouge">docker push</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker push alice/alpine-python
+</code></pre></div></div>
+
+<p>Make sure to substitute the full name of your container!</p>
+
+<p>In a web browser, open <a href="https://hub.docker.com">https://hub.docker.com</a>, and on your user page you should now see your container listed, for anyone to use or build on.</p>
+
+<blockquote class="callout">
+  <h2 id="logging-in">Logging In</h2>
+
+  <p>Technically, you have to be logged into Docker on your computer for this to work.
+Usually it happens by default, but if <code class="language-plaintext highlighter-rouge">docker push</code> doesn’t work for you,
+run <code class="language-plaintext highlighter-rouge">docker login</code> first, enter your Docker Hub username and password, and then
+try <code class="language-plaintext highlighter-rouge">docker push</code> again.</p>
+</blockquote>
+
+<h2 id="whats-in-a-name-again">What’s in a name? (again)</h2>
+
+<p>You don’t <em>have</em> to name your containers using the <code class="language-plaintext highlighter-rouge">USERNAME/CONTAINER:TAG</code> naming&gt; scheme. On your own computer, you can call containers whatever you want and refer to
+them by the names you choose. It’s only when you want to share a container that it
+needs the correct naming format.</p>
+
+<p>You can rename images using the <code class="language-plaintext highlighter-rouge">docker tag</code> command. For example, imagine someone
+named Alice has been working on a workflow container and called it <code class="language-plaintext highlighter-rouge">workflow-test</code>
+on her own computer. She now wants to share it in her <code class="language-plaintext highlighter-rouge">alice</code> Docker Hub account
+with the name <code class="language-plaintext highlighter-rouge">workflow-complete</code> and a tag of <code class="language-plaintext highlighter-rouge">v1</code>. Her <code class="language-plaintext highlighter-rouge">docker tag</code> command
+would look like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker tag workflow-test alice/workflow-complete:v1
+</code></pre></div></div>
+
+<p>She could then push the re-named container to Docker Hub,
+using <code class="language-plaintext highlighter-rouge">docker push alice/workflow-complete:v1</code></p>
+
+<!--  LocalWords:  PowerShell
+ -->
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p><code class="language-plaintext highlighter-rouge">Dockerfiles</code> specify what is within Docker images.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker build</code> command is used to build an image from a <code class="language-plaintext highlighter-rouge">Dockerfile</code></p>
+</li>
+    
+    <li><p>You can share your Docker images through the Docker Hub so that others can create Docker containers from your images.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="/04b-managing-containers/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="/05b-advanced-containers/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//_episodes/05-creating-container-images.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>

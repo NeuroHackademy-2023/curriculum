@@ -1,0 +1,2737 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2023-08-07 16:12:44 -0500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/fonts.css" />
+    
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/incubator/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/incubator/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/incubator/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/incubator/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/incubator/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/incubator/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/incubator/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/incubator/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/assets/favicons/incubator/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="The Carpentries Incubator - Reproducible Computational Environments Using Containers: Introduction to Docker"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/assets/favicons/incubator/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/assets/favicons/incubator/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/assets/favicons/incubator/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/assets/favicons/incubator/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/assets/favicons/incubator/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+  <title>
+  Reproducible Computational Environments Using Containers: Introduction to Docker
+  </title>
+
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
+    
+    <br> <strong><a href="/issues">If you teach this lesson, please tell the authors and provide feedback by opening an issue in the source repository</a></strong>
+    
+  </div>
+</div>
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      
+      <a href="/index.html" class="pull-left">
+        <img class="navbar-logo" src="/assets/img/incubator-logo-blue.svg" alt="The Carpentries Incubator logo" />
+      </a>
+      
+
+      
+      <a class="navbar-brand" href="/index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+	
+        <li><a href="/CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+
+        
+	
+        <li><a href="/setup.html">Setup</a></li>
+
+        
+        
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="/01-introduction/index.html">Introducing Containers</a></li>
+            
+            
+            <li><a href="/02-meet-docker/index.html">Introducing the Docker command line</a></li>
+            
+            
+            <li><a href="/03-running-containers/index.html">Exploring and Running Containers</a></li>
+            
+            
+            <li><a href="/04-docker-hub/index.html">Finding Containers on the Docker Hub</a></li>
+            
+            
+            <li><a href="/04b-managing-containers/index.html">Cleaning Up Containers</a></li>
+            
+            
+            <li><a href="/05-creating-container-images/index.html">Creating your own container images</a></li>
+            
+            
+            <li><a href="/05b-advanced-containers/index.html">Creating More Complex Container Images</a></li>
+            
+            
+            <li><a href="/06-containers-for-continuous-integration/index.html">Containers used in generating this lesson</a></li>
+            
+            
+            <li><a href="/07-reproducibility/index.html">Containers in research workflows: reproducibility and granularity</a></li>
+            
+            
+            <li><a href="/08-docker-compose/index.html">Introduction to docker-compose</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="/aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+        
+	
+
+	
+	
+        <li class="dropdown">
+          <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+              <li><a href="/about/index.html">About</a></li>
+            
+            
+            
+            
+              <li><a href="/discuss/index.html">Discussion</a></li>
+            
+            
+            
+            
+              <li><a href="/figures/index.html">Figures</a></li>
+            
+            
+            
+            
+              <li><a href="/guide/index.html">Instructor Notes</a></li>
+            
+            
+          </ul>
+        </li>
+	
+
+	
+        <li><a href="/LICENSE.html">License</a></li>
+	
+	<li><a href="/edit//aio.md" data-checker-ignore>Improve this page <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+	
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+      
+
+
+<div class="alert alert-info text-center" role="alert">
+  This lesson is part of
+  <a href="https://github.com/carpentries-incubator/proposals/#the-carpentries-incubator" data-checker-ignore>
+    The Carpentries Incubator</a>, a place to share and use each other's
+  Carpentries-style lessons. <strong>This lesson has not been reviewed by and is
+  not endorsed by The Carpentries</strong>.
+</div>
+
+
+
+
+      
+
+
+
+
+
+<h1 class="maintitle"><a href="/index.html">Reproducible Computational Environments Using Containers: Introduction to Docker</a></h1>
+
+
+
+<article>
+
+<h1 id="introducing-containers" class="maintitle">Introducing Containers</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>What are containers, and why might they be useful to me?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Show how software depending on other software leads to configuration management problems.</p>
+</li>
+	
+	<li><p>Identify the problems that software installation problems can pose for research.</p>
+</li>
+	
+	<li><p>Give two examples of how containers can solve software configuration problems.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h3 id="disclaimers">Disclaimers</h3>
+
+<ol>
+  <li>
+    <p>Docker is complex software used for many different purposes. We are unlikely to give examples that suit all of your potential ideal use-cases, but would be delighted to at least open up discussion of what those use-cases might be.</p>
+  </li>
+  <li>
+    <p>Containers are a topic that requires significant amounts of technical background to understand in detail. Most of the time containers, particularly as wrapped up by Docker, do not require you to have a deep technical understanding of container technology, but when things go wrong, the diagnostic messages may turn opaque rather quickly.</p>
+  </li>
+</ol>
+
+<h3 id="scientific-software-challenges">Scientific Software Challenges</h3>
+
+<blockquote class="challenge">
+  <h2 id="whats-your-experience">What’s Your Experience?</h2>
+
+  <p>Take a minute to think about challenges that you have experienced in using 
+scientific software (or software in general!) for your research. Then, 
+share with your neighbors and try to come up with a list of common gripes or 
+challenges.</p>
+</blockquote>
+
+<p>You may have come up with some of the following:</p>
+<ul>
+  <li>software that doesn’t exist for the operating system (Mac, Windows, Linux) you use or want to use.</li>
+  <li>software that is hard to install because you have to install a bunch of other things first 
+(and those installations required <em>other</em> installations…).</li>
+  <li>you’re not actually sure what software you’re using because the install process was 
+so circuitous.</li>
+  <li>you and a colleague are using the “same” software but have installed different versions.</li>
+  <li>you installed everything correctly on your computer, once, but now need to 
+install it on your colleague’s computer, or on the campus computing cluster.</li>
+  <li>you’re writing a package for other people to use, but you get a lot of emails 
+from people who can’t install it.</li>
+</ul>
+
+<p>Etc.</p>
+
+<p>A lot of these characteristics boil down to one fact: the main program you want 
+to use likely depends on many, many, different other programs (including the 
+operating system!), creating a very complex, and often fragile system. One change 
+or missing piece may stop the whole thing from working or break something that was 
+already running. It’s no surprise that this situation is sometimes 
+informally termed “dependency hell”.</p>
+
+<blockquote class="challenge">
+  <h2 id="software-and-science">Software and Science</h2>
+
+  <p>Again, take a minute to think about how the software challenges we’ve discussed 
+could impact (or have impacted!) the quality of your work. 
+Share your thoughts with your neighbors. What can go wrong if our software 
+doesn’t work?</p>
+</blockquote>
+
+<p>Unsurprisingly, software installation and configuration challenges can have 
+negative consequences for research:</p>
+<ul>
+  <li>you can’t use a specific tool at all, because it’s not available or installable.</li>
+  <li>you can’t reproduce your results because you’re not sure what tools you’re actually using.</li>
+  <li>you can’t access extra resources because you’re not able to replicate your software set up.</li>
+</ul>
+
+<p>Thankfully there are ways to get underneath (a lot of) this mess: containers 
+to the rescue! Containers provide a way to package up software dependencies 
+and access to resources such as files and communications networks in a uniform manner.</p>
+
+<h3 id="what-is-a-container">What is a Container?</h3>
+
+<p>Docker is a tool that allows you to build what are called “containers.” It’s 
+not the only tool that can create containers, but is the one we’ve chosen for 
+this workshop. But what <em>is</em> a container?</p>
+
+<p>To understand containers, let’s first talk briefly about your computer.</p>
+
+<p>Your computer has some standard pieces that allow it to work - often what’s 
+called the hardware. One of these pieces is the CPU or processor; another is 
+the amount of memory or RAM that your computer can use to store information 
+temporarily while running programs; another is the hard drive, which can store 
+information over the long-term. All these pieces work together to do the 
+“computing” of a computer, but we don’t see them, because they’re hidden away.</p>
+
+<p>Instead, what we see is our desktop, program windows, different folders, and 
+files. These all 
+live in what’s called the file system. Everything on your computer - programs, 
+pictures, documents - lives somewhere in the file system. One way to think of 
+the file system is the layer of stuff that can be activated to use the CPU, memory and hard 
+drive of your computer.</p>
+
+<p>NOW, imagine you wanted to have a second computer. You don’t want to buy a 
+whole new computer because it’s too expensive. What if, instead, you could have 
+another filesystem that you could store and access from your main computer, 
+but that is self-contained?</p>
+
+<p>A container system (like Docker) is a special program 
+on your computer that does this. 
+The term “container” can be usefully considered with reference to shipping 
+containers. Before shipping containers were developed, packing and unpacking 
+cargo ships was time consuming, and error prone, with high potential for 
+different clients’ goods to become mixed up. Software containers standardise 
+the packaging of a complete software system:
+ you can drop a container into a computer with the container software installed
+ (also called a container host), and it should “just work”.</p>
+
+<blockquote class="callout">
+  <h2 id="virtualization">Virtualization</h2>
+
+  <p>Containers are an example of what’s called <strong>virtualization</strong> – having a 
+second “virtual” computer running and accessible from a main or <strong>host</strong>
+computer. Another example of virtualization are <strong>virtual machines</strong> or 
+VMs. A virtual machine typically contains a whole copy of an operating system in 
+addition to its own file system and has to get booted up in the same way 
+a computer would. 
+A container is considered a lightweight version of a virtual machine; 
+underneath, the container is using the Linux 
+kernel and simply has some flavor of Linux + the file system inside.</p>
+</blockquote>
+
+<p>One final term: if the container is an alternative file system layer that you 
+can access and run from your computer, the <strong>container image</strong> is like a template 
+for that container. The container image has all the needed information to start 
+up a running copy of the container. A running container tends to be transient 
+and can be started and shut down. The image is more long-lived, as a source file for the container. 
+You could think of the container image like a cookie cutter – it 
+can be used to create multiple copies of the same shape (or container) 
+and is relatively unchanging, where cookies come and go. If you want a 
+different type of container (cookie) you need a different image (cookie cutter).</p>
+
+<h3 id="putting-the-pieces-together">Putting the Pieces Together</h3>
+
+<p>Think back to some of the challenges we described at the beginning. The many layers 
+of scientific software installations make it hard to install and re-install 
+scientific software – which ultimately, hinders reliability and reproducibility.</p>
+
+<p>But now, think about what a container is - a self-contained, complete, separate 
+computer file system. What if you put your scientific software tools into a 
+container?</p>
+
+<p>This solves several of our problems:</p>
+<ul>
+  <li>There is a clear record of what software and software dependencies were used, 
+from bottom to top.</li>
+  <li>The container can be used on any computer that has Docker installed – it 
+doesn’t matter whether the computer is Mac, Windows or Linux-based.</li>
+  <li>The container ensures that you can use the exact same software and environment 
+on your computer and on other resources (like a large-scale computing cluster).</li>
+</ul>
+
+<p>The rest of this workshop will show you how to download and run pre-existing containers 
+on your own computer, and how to create and share your own containers.</p>
+
+<h3 id="use-cases-for-containers">Use cases for containers</h3>
+
+<p>Now that we have discussed a little bit about containers - what they do and the
+issues they attempt to address - you may be able to think of a few potential use
+cases in your area of work. Some examples of common use cases for containers in 
+a research context include:</p>
+
+<ul>
+  <li>Using containers solely on your own computer to use a specific software tool 
+or to test out a tool (possibly to avoid a difficult and complex installation
+process, to save your time or to avoid dependency hell).</li>
+  <li>Setting up software in a container and then sharing it with your collaborators
+for use on their computers or a remote computing resource (e.g. cloud-based or HPC
+system).</li>
+  <li>Archiving the container(s) so you can repeat analysis/modelling using the 
+same software and configuration in the future - capturing your workflow.</li>
+</ul>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Almost all software depends on other software components to function, but these components have independent evolutionary paths.</p>
+</li>
+    
+    <li><p>Projects involving many software components can rapidly run into a combinatoric explosion in the number of software version configurations available, yet only a subset of possible configurations actually works as desired.</p>
+</li>
+    
+    <li><p>Containers collect software components together and can help avoid software dependency problems.</p>
+</li>
+    
+    <li><p>Virtualisation is an old technology that container technology makes more practical.</p>
+</li>
+    
+    <li><p>Docker is just one software platform that can create containers and the resources they use.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="introducing-the-docker-command-line" class="maintitle">Introducing the Docker command line</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How do I interact with Docker?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how to check that Docker is installed and is ready to use.</p>
+</li>
+	
+	<li><p>Demonstrate some initial Docker command line interactions.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h3 id="docker-command-line">Docker command line</h3>
+
+<p>Start the Docker application that you installed in working through the setup instructions for this session. Note that this might not be necessary if your laptop is running Linux or if the installation added the Docker application to your startup process.</p>
+
+<blockquote class="callout">
+  <h2 id="you-may-need-to-login-to-docker-hub">You may need to login to Docker Hub</h2>
+  <p>The Docker application will usually provide a way for you to log in to the Docker Hub using the application’s menu (macOS) or systray
+icon (Windows) and it is usually convenient to do this when the application starts. This will require you to use your Docker Hub
+username and your password. We will not actually require access to Dockerhub until later in the course but if you can login now,
+you should do so.</p>
+</blockquote>
+
+<blockquote class="callout">
+  <h2 id="determining-your-docker-hub-username">Determining your Docker Hub username</h2>
+  <p>If you no longer recall your Docker Hub username, e.g., because you have been logging into the Docker Hub using your email address,
+you can find out what it is through the steps:</p>
+  <ul>
+    <li>Open <a href="http://hub.docker.com/">http://hub.docker.com/</a> in a web browser window</li>
+    <li>Sign-in using your email and password (don’t tell us what it is)</li>
+    <li>In the top-right of the screen you will see your username</li>
+  </ul>
+</blockquote>
+
+<p>Once your Docker application is running, open a shell (terminal) window, and run the following command to check that Docker is
+installed and the command line tools are working correctly. I have appended the output that I see on my Mac, but the specific
+version is unlikely to matter much: it certainly does not have to precisely match mine.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nt">--version</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker version 19.03.5, build 633a0ea
+</code></pre></div></div>
+
+<p>The above command has not actually relied on the part of Docker that runs containers, just that Docker
+is installed and you can access it correctly from the command line.</p>
+
+<p>A command that checks that Docker is working correctly is the <code class="language-plaintext highlighter-rouge">docker container list</code> command (we cover this command in more detail later in the course).</p>
+
+<p>Without explaining the details, output on a newly installed system would likely be:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div></div>
+<p>(The command <code class="language-plaintext highlighter-rouge">docker info</code> will achieve a similar end but produces a larger amount of output.)</p>
+
+<p>However, if you instead get a message similar to the following</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+</code></pre></div></div>
+
+<p>then you need to check that you have started the Docker Desktop, Docker Engine, or however else you worked through the setup instructions.</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>A toolbar icon indicates that Docker is ready to use.</p>
+</li>
+    
+    <li><p>You will typically interact with Docker using the command line.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="exploring-and-running-containers" class="maintitle">Exploring and Running Containers</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How do I interact with a Docker container on my computer?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Use the correct command to see which Docker images are on your computer.</p>
+</li>
+	
+	<li><p>Download new Docker images.</p>
+</li>
+	
+	<li><p>Demonstrate how to start an instance of a container from an image.</p>
+</li>
+	
+	<li><p>Describe at least two ways to run commands inside a running Docker container.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<blockquote class="callout">
+  <h2 id="reminder-of-terminology-images-and-containers">Reminder of terminology: images and containers</h2>
+  <p>Recall that a container “image” is the template from which particular instances of containers will be created.</p>
+</blockquote>
+
+<p>Let’s explore our first Docker container. The Docker team provides a simple container
+image online called <code class="language-plaintext highlighter-rouge">hello-world</code>. We’ll start with that one.</p>
+
+<h2 id="downloading-docker-images">Downloading Docker images</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">docker image</code> command is used to list and modify Docker images.
+You can find out what container images you have on your computer by using the following command (“ls” is short for “list”):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>If you’ve just
+installed Docker, you won’t see any images listed.</p>
+
+<p>To get a copy of the <code class="language-plaintext highlighter-rouge">hello-world</code> Docker image from the internet, run this command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull hello-world
+</code></pre></div></div>
+
+<p>You should see output like this:</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using default tag: latest
+latest: Pulling from library/hello-world
+1b930d010525: Pull complete
+Digest: sha256:f9dfddf63636d84ef479d645ab5885156ae030f611a56f3a7ac7f2fdd86d7e4e
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="dockerhub">DockerHub</h2>
+
+  <p>Where did the <code class="language-plaintext highlighter-rouge">hello-world</code> image come from? It came from the DockerHub
+website, which is a place to share Docker images with other people. More on that
+in a later episode.</p>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-check-on-your-images">Exercise: Check on Your Images</h2>
+
+  <p>What command would you use to see if the <code class="language-plaintext highlighter-rouge">hello-world</code> Docker image had downloaded
+successfully and was on your computer?
+Give it a try before checking the solution.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>To see if the <code class="language-plaintext highlighter-rouge">hello-world</code> image is now on your computer, run:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">ls</span>
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>Note that the downloaded <code class="language-plaintext highlighter-rouge">hello-world</code> image is not in the folder where you are in the terminal! (Run
+<code class="language-plaintext highlighter-rouge">ls</code> by itself to check.) The image is not a file like our normal programs and files;
+Docker stores it in a specific location that isn’t commonly accessed, so it’s necessary
+to use the special <code class="language-plaintext highlighter-rouge">docker image</code> command to see what Docker images you have on your
+computer.</p>
+
+<h2 id="running-the-hello-world-container">Running the <code class="language-plaintext highlighter-rouge">hello-world</code> container</h2>
+
+<p>To create and run containers from named Docker images you use the <code class="language-plaintext highlighter-rouge">docker run</code> command. Try the following <code class="language-plaintext highlighter-rouge">docker run</code> invocation. Note that it does not matter what your current working directory is.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run hello-world
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+</code></pre></div></div>
+
+<p>What just happened? When we use the <code class="language-plaintext highlighter-rouge">docker run</code> command, Docker does three things:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>1. Starts a Running Container</th>
+      <th>2. Performs Default Action</th>
+      <th>3. Shuts Down the Container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>starts a running container, based on the image. Think of this as the “alive” or”inflated” version of the container – it’s actually doing something</td>
+      <td>If the container has a default action set, it will perform that default action. This could be as simple as printing a message (as above) or running a whole analysis pipeline!</td>
+      <td>Once the default action is complete, the container stops running (or exits). The image is still there, but nothing is actively running.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">hello-world</code> container is set up to run an action by default -
+namely to print this message.</p>
+
+<blockquote class="callout">
+  <h2 id="using-docker-run-to-get-the-image">Using <code class="language-plaintext highlighter-rouge">docker run</code> to get the image</h2>
+
+  <p>We could have skipped the <code class="language-plaintext highlighter-rouge">docker pull</code> step; if you use the <code class="language-plaintext highlighter-rouge">docker run</code>
+command and you don’t already have a copy of the Docker image, Docker will
+automatically pull the image first and then run it.</p>
+</blockquote>
+
+<h2 id="running-a-container-with-a-chosen-command">Running a container with a chosen command</h2>
+
+<p>But what if we wanted to do something different with the container? The output
+just gave us a suggestion of what to do – let’s use a different Docker image
+to explore what else we can do with the <code class="language-plaintext highlighter-rouge">docker run</code> command. The suggestion above
+is to use <code class="language-plaintext highlighter-rouge">ubuntu</code>, but we’re going to run a different type of Linux, <code class="language-plaintext highlighter-rouge">alpine</code>
+instead because it’s quicker to download.</p>
+
+<blockquote class="challenge">
+  <h2 id="run-the-alpine-docker-container">Run the Alpine Docker container</h2>
+
+  <p>Try downloading and running the <code class="language-plaintext highlighter-rouge">alpine</code> Docker container. You can do it in
+two steps, or one. What are they?</p>
+</blockquote>
+
+<p>What happened when you ran the Alpine Docker container?</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alpine
+</code></pre></div></div>
+
+<p>If you never used the <em>alpine</em> docker image on your computer, docker probably printed a message that it couldn’t find the image and had to download it.
+If you used the alpine image before, the command will probably show no output. That’s because this particular container is designed for you to
+provide commands yourself. Try running this instead:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alpine <span class="nb">cat</span> /etc/os-release
+</code></pre></div></div>
+
+<p>You should see the output of the <code class="language-plaintext highlighter-rouge">cat /etc/os-release</code> command, which prints out
+the version of Alpine Linux that this container is using and a few additional bits of information.</p>
+
+<blockquote class="challenge">
+  <h2 id="hello-world-part-2">Hello World, Part 2</h2>
+  <p>Can you run the container and make it print a “hello world” message?</p>
+
+  <p>Give it a try before checking the solution.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution</h2>
+
+    <p>Use the same command as above, but with the <code class="language-plaintext highlighter-rouge">echo</code> command to print a message.</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alpine <span class="nb">echo</span> <span class="s1">'Hello World'</span>
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>So here, we see another option – we can provide commands at the end of the <code class="language-plaintext highlighter-rouge">docker run</code>
+command and they will execute inside the running container.</p>
+
+<h2 id="running-containers-interactively">Running containers interactively</h2>
+
+<p>In all the examples above, Docker has started the container, run a command, and then
+immediately shut down the container. But what if we wanted to keep the container
+running so we could log into it and test drive more commands? The way to
+do this is by adding the interactive flag <code class="language-plaintext highlighter-rouge">-it</code> to the <code class="language-plaintext highlighter-rouge">docker run</code> command and
+by providing a shell (usually <code class="language-plaintext highlighter-rouge">bash</code> or <code class="language-plaintext highlighter-rouge">sh</code>) as our command.
+The alpine docker image doesn’t include <code class="language-plaintext highlighter-rouge">bash</code> so we need to use <code class="language-plaintext highlighter-rouge">sh</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alpine sh
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="technically">Technically…</h2>
+
+  <p>Technically, the interactive flag is just <code class="language-plaintext highlighter-rouge">-i</code>, the extra <code class="language-plaintext highlighter-rouge">-t</code> (combined
+as <code class="language-plaintext highlighter-rouge">-it</code> above) is an option that allows you to connect to a shell like
+bash. But since usually you want to have a command line when run interactively,
+it always makes sense to use the two together.</p>
+</blockquote>
+
+<p>Your prompt should change significantly to look like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ <span class="c">#</span>
+</code></pre></div></div>
+
+<p>That’s because you’re now inside the running container! Try these commands:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pwd</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ls</code></li>
+  <li><code class="language-plaintext highlighter-rouge">whoami</code></li>
+  <li><code class="language-plaintext highlighter-rouge">echo $PATH</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cat /etc/os-release</code></li>
+</ul>
+
+<p>All of these are being run from inside the running container, so you’ll get information
+about the container itself, instead of your computer. To finish using the container,
+just type <code class="language-plaintext highlighter-rouge">exit</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/ <span class="c"># exit</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="practice-makes-perfect">Practice Makes Perfect</h2>
+  <p>Can you find out the version of Linux installed on the <code class="language-plaintext highlighter-rouge">busybox</code> container?
+Can you find the <code class="language-plaintext highlighter-rouge">busybox</code> program? What does it do? (Hint: passing <code class="language-plaintext highlighter-rouge">--help</code>
+to almost any command will give you more information.)</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1---interactive">Solution 1 - Interactive</h2>
+
+    <p>Run the busybox container interactively – you can use <code class="language-plaintext highlighter-rouge">docker pull</code> first, or just
+run it with this command:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> busybox sh
+</code></pre></div>    </div>
+
+    <p>Then try, running these commands</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">cat</span> /proc/version
+/# busybox <span class="nt">--help</span>
+</code></pre></div>    </div>
+
+    <p>Exit when you’re done.</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">exit</span>
+</code></pre></div>    </div>
+  </blockquote>
+
+  <blockquote class="solution">
+    <h2 id="solution-2---run-commands">Solution 2 - Run commands</h2>
+
+    <p>Run the busybox container, first with a command to read out the Linux version:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run busybox <span class="nb">cat</span> /proc/version
+</code></pre></div>    </div>
+
+    <p>Then run the container again with a command to print out the busybox help:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run busybox busybox <span class="nt">--help</span>
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So far, we’ve seen how to download Docker images, use them to run commands inside
+running containers, and even how to explore a running container from the inside.
+Next, we’ll take a closer look at all the different kinds of Docker images that are out there.</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker pull</code> command downloads Docker images from the internet.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker image ls</code> command lists Docker images that are (now) on your computer.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker run</code> command creates running containers from images and can run commands inside them.</p>
+</li>
+    
+    <li><p>When using the <code class="language-plaintext highlighter-rouge">docker run</code> command, a container can run a default action (if it has one), a user specified action, or a shell to be used interactively.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="finding-containers-on-the-docker-hub" class="maintitle">Finding Containers on the Docker Hub</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br />
+      <strong>Exercises:</strong> 10 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>What is the Docker Hub, and why is it useful?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how the Docker Hub augments Docker use.</p>
+</li>
+	
+	<li><p>Explore the Docker Hub webpage for a popular Docker image.</p>
+</li>
+	
+	<li><p>Find the list of tags for a particular Docker image.</p>
+</li>
+	
+	<li><p>Identify the three components of a container’s identifier.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>In the previous episode, we ran a few different containers: <code class="language-plaintext highlighter-rouge">hello-world</code>, <code class="language-plaintext highlighter-rouge">alpine</code>,
+and maybe <code class="language-plaintext highlighter-rouge">busybox</code>. Where did these containers come from?  The Docker Hub!</p>
+
+<h2 id="introducing-the-docker-hub">Introducing the Docker Hub</h2>
+
+<p>The Docker Hub is an online repository of container images, a vast number of which are publicly available. A large number of the images are curated by the developers of the software that they package. Also, many commonly used pieces of software that have been containerised into images are specifically endorsed, which means that you can trust the containers to have been checked for functionality, stability, and that they don’t contain malware.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-can-be-used-without-connecting-to-the-docker-hub">Docker can be used without connecting to the Docker Hub</h2>
+
+  <p>Note that while the Docker Hub is well integrated into Docker functionality, the Docker Hub is certainly not required for all types of use of Docker containers. For example, some organisations may run container infrastructure that is entirely disconnected from the Internet.</p>
+</blockquote>
+
+<h2 id="exploring-an-example-docker-hub-page">Exploring an Example Docker Hub Page</h2>
+
+<p>As an example of a Docker Hub page, let’s explore the page for the python language. The most basic form of containerised python is in the “python” image (which is endorsed by the Docker team). Open your web browser to <a href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a> to see what is on a typical Docker hub software page.</p>
+
+<p>The top-left provides information about the name, short description, popularity (i.e., over a billion downloads in the case of this image), and endorsements.</p>
+
+<p>The top-right provides the command to pull this image to your computer.</p>
+
+<p>The main body of the page contains many used headings, such as:</p>
+<ul>
+  <li>Which tags (i.e., image versions) are supported;</li>
+  <li>Summary information about where to get help, which computer architectures are supported, etc.;</li>
+  <li>A longer description of the package;</li>
+  <li>Examples of how to use the image; and</li>
+  <li>The licence that applies.</li>
+</ul>
+
+<p>At least in my experience, the “Examples of how to use the image” section of most images’ pages will provide examples that are likely to adequately cover your intended use of the image.</p>
+
+<h2 id="exploring-image-versions">Exploring Image Versions</h2>
+
+<p>A single Docker Hub page can have many different versions of container images,
+based on the version of the software inside.  These
+versions are indicated by “tags”. When referring to the specific version of a container
+by its tag, you use a colon, <code class="language-plaintext highlighter-rouge">:</code>, like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINERNAME:TAG
+</code></pre></div></div>
+
+<p>So if I wanted to download the <code class="language-plaintext highlighter-rouge">python</code> container, with Python 3.8, I would use this name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull python:3.8
+</code></pre></div></div>
+
+<p>But if I wanted to download a Python 3.6 container, I would use this name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull python:3.6
+</code></pre></div></div>
+
+<p>The default tag (which is used if you don’t specify one) is called <code class="language-plaintext highlighter-rouge">latest</code>.</p>
+
+<p>So far, we’ve only seen containers that are maintained by the Docker team. However,
+it’s equally common to use containers that have been produced by individual owners
+or organizations. Containers that you create and upload to Docker Hub would fall
+into this category, as would the containers maintained by organizations like
+<a href="https://hub.docker.com/u/continuumio">ContinuumIO</a> (the folks who develop the Anaconda Python environment) or community
+groups like <a href="https://hub.docker.com/u/rocker">rocker</a>, a group that builds community R containers.</p>
+
+<p>The name for these group- or individually-managed containers have this format:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OWNER/CONTAINERNAME:TAG
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="repositories">Repositories</h2>
+
+  <p>The technical name for the contents of a Docker Hub page is a “repository.”
+The tag indicates the specific version of the container image that you’d like
+to use from a particular repository. So a slightly more accurate version of
+the above example is:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OWNER/REPOSITORY:TAG
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="whats-in-a-name">What’s in a name?</h2>
+
+  <p>How would I download the Docker container produced by the <code class="language-plaintext highlighter-rouge">rocker</code> group that
+has version 3.6.1 of R and the tidyverse installed?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>First, search for <code class="language-plaintext highlighter-rouge">rocker</code> in Docker Hub. Then look for their <code class="language-plaintext highlighter-rouge">tidyverse</code> image.
+You can look at the list of tags, or just guess that the tag is <code class="language-plaintext highlighter-rouge">3.6.1</code>. Altogether,
+that means that the name of the container we want to download is:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull rocker/tidyverse:3.6.1
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<h2 id="many-different-containers">Many Different Containers</h2>
+
+<p>There are many different containers on Docker Hub. This is where the real advantage
+of using containers shows up – each container represents a complete software
+installation that you can use and access without any extra work!</p>
+
+<p>The easiest way to find containers is to search on Docker Hub, but sometimes
+software pages have a link to their containers from their home page.</p>
+
+<blockquote class="challenge">
+  <h2 id="what-container-is-right-for-you">What container is right for you?</h2>
+
+  <p>Find a Docker container that’s relevant to you. If you’re unsuccessful in your search,
+or don’t know what to look for, you can use the R or Python containers we’ve
+already seen.</p>
+
+  <p>Once you find a container, use the skills from the previous episode to download
+the image and explore it.</p>
+</blockquote>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The Docker Hub is an online repository of container images.</p>
+</li>
+    
+    <li><p>Many Docker Hub images are public, and may be officially endorsed.</p>
+</li>
+    
+    <li><p>Each Docker Hub page about an image provides structured information and subheadings</p>
+</li>
+    
+    <li><p>Most Docker Hub pages about images contain sections that provide examples of how to use those images.</p>
+</li>
+    
+    <li><p>Many Docker Hub images have multiple versions, indicated by tags.</p>
+</li>
+    
+    <li><p>The naming convention for Docker containers is: <code class="language-plaintext highlighter-rouge">OWNER/CONTAINER:TAG</code></p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="cleaning-up-containers" class="maintitle">Cleaning Up Containers</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 10 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How do I interact with a Docker container on my computer?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how to list running and completed containers.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h2 id="removing-images">Removing images</h2>
+
+<p>The images and their corresponding containers can start to take up a lot of disk space if you don’t clean them up occasionally, so it’s a good idea to periodically remove container images that you won’t be using anymore.</p>
+
+<p>In order to remove a specific image, you need to find out details about the image,
+specifically, the “image ID”. For example say my laptop contained the following image.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REPOSITORY       TAG         IMAGE ID       CREATED          SIZE
+hello-world      latest      fce289e99eb9   15 months ago    1.84kB
+</code></pre></div></div>
+
+<p>You can remove the image with a <code class="language-plaintext highlighter-rouge">docker image rm</code> command that includes the image ID, such as:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>fce289e99eb9
+</code></pre></div></div>
+
+<p>or use the image name, like so:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>hello-world
+</code></pre></div></div>
+
+<p>However, you may see this output:</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container e7d3b76b00f4 is using its referenced image fce289e99eb9
+</code></pre></div></div>
+
+<p>This happens when Docker hasn’t cleaned up some of the times when a container
+has been actually run. So before removing the container image, we need to be able
+to see what containers are currently running, or have been run recently, and how
+to remove these.</p>
+
+<h2 id="what-containers-are-running">What containers are running?</h2>
+
+<p>Working with containers, we are going to shift to a new docker command: <code class="language-plaintext highlighter-rouge">docker container</code>.  Similar to <code class="language-plaintext highlighter-rouge">docker image</code>, we can list running containers by typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div></div>
+
+<p>Notice that this command didn’t return any containers because our containers all exited and thus stopped running after they completed their work.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-ps"><code class="language-plaintext highlighter-rouge">docker ps</code></h2>
+
+  <p>The command <code class="language-plaintext highlighter-rouge">docker ps</code> serves the same purpose as <code class="language-plaintext highlighter-rouge">docker container ls</code>, and comes
+from the Unix shell command <code class="language-plaintext highlighter-rouge">ps</code> which describes running processes.</p>
+</blockquote>
+
+<h2 id="what-containers-have-run-recently">What containers have run recently?</h2>
+
+<p>There is also a way to list running containers, and those that have completed recently, which is to add the <code class="language-plaintext highlighter-rouge">--all</code>/<code class="language-plaintext highlighter-rouge">-a</code> flag to the <code class="language-plaintext highlighter-rouge">docker container ls</code> command as shown below.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">ls</span> <span class="nt">--all</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+9c698655416a        hello-world         "/hello"            2 minutes ago       Exited (0) 2 minutes ago                       zen_dubinsky
+6dd822cf6ca9        hello-world         "/hello"            3 minutes ago       Exited (0) 3 minutes ago                       eager_engelbart
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="keeping-it-clean">Keeping it clean</h2>
+
+  <p>You might be surprised at the number of containers Docker is still keeping track of.
+One way to prevent this from happening is to add the <code class="language-plaintext highlighter-rouge">--rm</code> flag to <code class="language-plaintext highlighter-rouge">docker run</code>. This
+will completely wipe out the record of the run container when it exits. If you need
+a reference to the running container for any reason, <strong>don’t</strong> use this flag.</p>
+</blockquote>
+
+<h2 id="how-do-i-remove-an-exited-container">How do I remove an exited container?</h2>
+
+<p>To delete an exited container you can run the following command, inserting the <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> for the container you wish to remove.
+It will repeat the <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> back to you, if successful.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container <span class="nb">rm </span>9c698655416a
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>9c698655416a
+</code></pre></div></div>
+
+<p>If you want to remove all exited containers at once you can use the <code class="language-plaintext highlighter-rouge">docker containers prune</code> command.
+<strong>Be careful</strong> with this command.
+If you have containers you may want to reconnect to, you should not use this command.
+It will ask you if to confirm you want to remove these containers, see output below.
+If successfull it will print the full <code class="language-plaintext highlighter-rouge">CONTAINER ID</code> back to you.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker container prune
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING! This will remove all stopped containers.
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+9c698655416a848278d16bb1352b97e72b7ea85884bff8f106877afe0210acfc
+6dd822cf6ca92f3040eaecbd26ad2af63595f30bb7e7a20eacf4554f6ccc9b2b
+</code></pre></div></div>
+
+<h2 id="removing-images-for-real-this-time">Removing images, for real this time</h2>
+
+<p>Now that we’ve removed any potentially running or stopped containers, we can try again to
+delete the <code class="language-plaintext highlighter-rouge">hello-world</code> <strong>image</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker image <span class="nb">rm </span>hello-world
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Untagged: hello-world:latest
+Untagged: hello-world@sha256:5f179596a7335398b805f036f7e8561b6f0e32cd30a32f5e19d17a3cda6cc33d
+Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e
+Deleted: sha256:af0b15c8625bb1938f1d7b17081031f649fd14e6b233688eea3c5483994a66a3
+</code></pre></div></div>
+
+<p>The reason that there are a few lines of output, is that a given image may have been formed by merging multiple underlying layers.
+Any layers that are used by multiple Docker images will only be stored once.
+Now the result of <code class="language-plaintext highlighter-rouge">docker image ls</code> should no longer include the <code class="language-plaintext highlighter-rouge">hello-world</code> image.</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker container ls</code> command lists containers that have been created.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="creating-your-own-container-images" class="maintitle">Creating your own container images</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 15 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I make my own Docker images?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain the purpose of a <code class="language-plaintext highlighter-rouge">Dockerfile</code> and show some simple examples.</p>
+</li>
+	
+	<li><p>Demonstrate how to build a Docker image from a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+	
+	<li><p>Compare the steps of creating a container interactively versus a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+	
+	<li><p>Create an installation strategy for a container</p>
+</li>
+	
+	<li><p>Demonstrate how to upload (‘push’) your container images to the Docker Hub.</p>
+</li>
+	
+	<li><p>Describe the significance of the Docker Hub naming scheme.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>There are lots of reasons why you might want to create your <strong>own</strong> Docker image.</p>
+<ul>
+  <li>You can’t find a container with all the tools you need on Docker Hub.</li>
+  <li>You want to have a container to “archive” all the specific software versions you ran for a project</li>
+  <li>You want to share your workflow with someone else.</li>
+</ul>
+
+<h2 id="interactive-installation">Interactive installation</h2>
+
+<p>Before creating a reproducible installation, let’s experiment with installing
+software inside a container. Start the <code class="language-plaintext highlighter-rouge">alpine</code> container from before, interactively:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alpine sh
+</code></pre></div></div>
+
+<p>Because this is a basic container, there’s a lot of things not installed – for
+example, <code class="language-plaintext highlighter-rouge">python3</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh: python3: not found
+</code></pre></div></div>
+
+<p>Inside the container, we can run commands to install Python3. The Alpine version of
+Linux has a installation tool called <code class="language-plaintext highlighter-rouge">apk</code> that we can use to install Python3.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# apk add <span class="nt">--update</span> python3 py3-pip python3-dev
+</code></pre></div></div>
+
+<p>We can test our installation by running a Python command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3 <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Once Python is installed, we can add Python packages using the pip package installer:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# pip <span class="nb">install </span>cython
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-searching-for-help">Exercise: Searching for Help</h2>
+
+  <p>Can you find instructions for installing R on Alpine Linux? Do they work?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>A quick search should hopefully show that the way to install R on Alpine Linux is:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# apk add R
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>Once we exit, these changes are not saved to a new container by default. There is
+a command that will “snapshot” our changes, but building containers this way is
+not very reproducible. Instead, we’re going to take what we’ve learned from this
+interactive installation and create our container from a reproducible recipe,
+known as a <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+
+<p>If you haven’t already, exit out of the interactively running container.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">exit</span>
+</code></pre></div></div>
+
+<h2 id="put-installation-instructions-in-a-dockerfile">Put installation instructions in a <code class="language-plaintext highlighter-rouge">Dockerfile</code></h2>
+
+<p>A <code class="language-plaintext highlighter-rouge">Dockerfile</code> is a plain text file with keywords and commands that
+can be used to create a new container image.</p>
+
+<p>From your shell, go to the folder you downloaded at the start of the lesson
+and print out the Dockerfile inside:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/docker-intro/basic
+<span class="nv">$ </span><span class="nb">cat </span>Dockerfile
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM &lt;EXISTING IMAGE&gt;
+RUN &lt;INSTALL CMDS FROM SHELL&gt;
+RUN &lt;INSTALL CMDS FROM SHELL&gt;
+CMD &lt;CMD TO RUN BY DEFAULT&gt;
+</code></pre></div></div>
+
+<p>Let’s break this file down:</p>
+<ul>
+  <li>The first line, <code class="language-plaintext highlighter-rouge">FROM</code>, indicates which container we’re starting with.</li>
+  <li>The next two lines <code class="language-plaintext highlighter-rouge">RUN</code>, will indicate installation commands we want to run. These
+are the same commands that we used interactively above.</li>
+  <li>The last line, <code class="language-plaintext highlighter-rouge">CMD</code>, indicates the default command we want the
+container to run, if no other command is provided. It is recommended
+to provide <code class="language-plaintext highlighter-rouge">CMD</code> in <em>exec-form</em> (see the
+<a href="https://docs.docker.com/engine/reference/builder/#cmd"><code class="language-plaintext highlighter-rouge">CMD</code> section</a>
+of the Dockerfile documentation for more details). It is written as a
+list which contains the executable to run as its first element,
+optionally followed by any arguments as subsequent elements. The list
+is enclosed in square brackets (<code class="language-plaintext highlighter-rouge">[]</code>) and its elements are
+double-quoted (<code class="language-plaintext highlighter-rouge">"</code>) strings which are separated by commas. For
+example: <code class="language-plaintext highlighter-rouge">CMD ["ls", "-lF", "--color", "/etc"]</code></li>
+</ul>
+
+<blockquote class="callout">
+  <h2 id="shell-form-and-exec-form-for-cmd"><em>shell-form</em> and <em>exec-form</em> for CMD</h2>
+  <p>Another way to specify the parameter for the
+<a href="https://docs.docker.com/engine/reference/builder/#cmd"><code class="language-plaintext highlighter-rouge">CMD</code> instruction</a>
+is the <em>shell-form</em>. Here you type the command as you would call it
+from the command line. Docker then silently runs this command in the
+image’s standard shell.  <code class="language-plaintext highlighter-rouge">CMD cat /etc/passwd</code> is equivalent to <code class="language-plaintext highlighter-rouge">CMD
+["/bin/sh", "-c", "cat /etc/passwd"]</code>. We recommend to prefer the
+more explicit <em>exec-form</em> because we will be able to create more
+flexible container command options and make sure complex commands
+are unambiguous in this format.</p>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-take-a-guess">Exercise: Take a Guess</h2>
+
+  <p>Do you have any ideas about what we should use to fill in the sample Dockerfile
+to replicate the installation we did above?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution:</h2>
+    <p>Based on our experience above, edit the <code class="language-plaintext highlighter-rouge">Dockerfile</code> (in your text editor of choice)
+to look like this:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+RUN apk add --update python3 py3-pip python3-dev
+RUN pip install cython
+CMD ["python3", "--version"]
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>The recipe provided by this Dockerfile will use Alpine Linux as the base container,
+add Python and the Cython library, and set a default print command.</p>
+
+<h2 id="create-a-new-docker-image">Create a new Docker image</h2>
+
+<p>So far, we just have a file. We want Docker to take this file,
+run the install commands inside, and then save the
+resulting container as a new container image. To do this we will use the
+<code class="language-plaintext highlighter-rouge">docker build</code> command.</p>
+
+<p>We have to provide <code class="language-plaintext highlighter-rouge">docker build</code> with two pieces of information:</p>
+<ul>
+  <li>the location of the <code class="language-plaintext highlighter-rouge">Dockerfile</code></li>
+  <li>the name of the new image. Remember the naming scheme from before? You should name
+your new image with your Docker Hub username and a name for the container, like this:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  USERNAME/CONTAINERNAME
+</code></pre></div>    </div>
+    <p>All together, the build command will look like this:</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> USERNAME/CONTAINERNAME <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">-t</code> option names the container; the final dot indicates that the <code class="language-plaintext highlighter-rouge">Dockerfile</code> is in
+our current directory.</p>
+
+<p>For example, if my user name was <code class="language-plaintext highlighter-rouge">alice</code> and I wanted to call my
+image <code class="language-plaintext highlighter-rouge">alpine-python</code>, I would use this command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alice/alpine-python <span class="nb">.</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-review">Exercise: Review!</h2>
+
+  <ol>
+    <li>
+      <p>Think back to earlier. What command can you run to check if your image was created
+successfully? (Hint: what command shows the images on your computer?)</p>
+    </li>
+    <li>
+      <p>We didn’t specify a tag for our image name. What did Docker automatically use?</p>
+    </li>
+    <li>
+      <p>What command will run the container you’ve created? What should happen by default
+if you run the container? Can you make it do something different, like print
+“hello world”?</p>
+    </li>
+  </ol>
+
+  <blockquote class="solution">
+    <h2 id="solution-2">Solution</h2>
+
+    <ol>
+      <li>
+        <p>To see your new image, run <code class="language-plaintext highlighter-rouge">docker image ls</code>. You should see the name of your new
+image under the “REPOSITORY” heading.</p>
+      </li>
+      <li>
+        <p>In the output of <code class="language-plaintext highlighter-rouge">docker image ls</code>, you can see that Docker has automatically
+used the <code class="language-plaintext highlighter-rouge">latest</code> tag for our new image.</p>
+      </li>
+      <li>
+        <p>We want to use <code class="language-plaintext highlighter-rouge">docker run</code> to run the container.</p>
+      </li>
+    </ol>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python
+</code></pre></div>    </div>
+    <p>should run the container and print out our default message, the version
+of Python.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python <span class="nb">echo</span> <span class="s2">"Hello World"</span>
+</code></pre></div>    </div>
+    <p>will run the container and print out “Hello world” instead.</p>
+  </blockquote>
+</blockquote>
+
+<p>While it may not look like you have achieved much, you have already effected the combination of a lightweight Linux operating system with your specification to run a given command that can operate reliably on macOS, Microsoft Windows, Linux and on the cloud!</p>
+
+<h2 id="boring-but-important-notes-about-installation">Boring but important notes about installation</h2>
+
+<p>There are a lot of choices when it comes to installing software - sometimes too many!
+Here are some things to consider when creating your own container:</p>
+
+<ul>
+  <li><strong>Start smart</strong>, or, don’t install everything from scratch! If you’re using Python
+as your main tool, start with a <a href="https://hub.docker.com/_/python">Python container</a>. Same with <a href="https://hub.docker.com/r/rocker/r-ver/">R</a>. We’ve used Alpine Linux as an example
+in this lesson, but it’s generally not a good container to start with because it is
+a less common version of Linux; using <a href="https://hub.docker.com/_/ubuntu">Ubuntu</a>, <a href="https://hub.docker.com/_/debian">Debian</a> and <a href="https://hub.docker.com/_/centos">CentOS</a> are all
+good options for scientific software installations. The program you’re using might
+recommend a particular version of Linux; if this happens, start with that particular
+Linux container.</li>
+  <li><strong>How big?</strong> How much software do you really need to install? When you have a choice,
+lean towards using smaller starting images and installing only what’s needed for
+your software, as a bigger image means longer download times to use.</li>
+  <li><strong>Know (or Google) your Linux</strong>. Each version of Linux has a special set of tools specifically for installing software. The <code class="language-plaintext highlighter-rouge">apk</code> command we used above is the installer for Alpine Linux. The installers for various common Linux versions are listed below:
+    <ul>
+      <li>Ubuntu: <code class="language-plaintext highlighter-rouge">apt</code> or <code class="language-plaintext highlighter-rouge">apt-get</code></li>
+      <li>Debian: <code class="language-plaintext highlighter-rouge">deb</code></li>
+      <li>CentOS: <code class="language-plaintext highlighter-rouge">yum</code>
+Most common software installations are available to be installed via these tools.
+Searching for “install X on Y Linux” is always a good start for common software
+installations; if something isn’t available via the Linux distribution’s installation
+tools, try the options below.</li>
+    </ul>
+  </li>
+  <li><strong>Use what you know</strong>. You’ve probably used commands like <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">install.packages()</code>
+before on your own computer – these will also work to install things in containers (if the basic scripting
+language is installed).</li>
+  <li><strong>README</strong>. Many scientific software tools have a README or installation instructions
+that lay out how to install software. You want to look for instructions for Linux. If
+the install instructions include options like those suggested above, try those first.</li>
+</ul>
+
+<p>In general, a good strategy for installing software is:</p>
+<ul>
+  <li>Make a list of what you want to install.</li>
+  <li>Look for pre-existing containers.</li>
+  <li>Read through instructions for software you’ll need to install.</li>
+  <li>Try installing everything interactively in your base container - take notes!</li>
+  <li>From your interactive installation, create a Dockerfile and then try to build
+the container again from that.</li>
+</ul>
+
+<blockquote>
+  <h2 id="todo-exercises">TODO: Exercises</h2>
+
+  <p>Have a set of “choose your own adventure” software installation examples</p>
+</blockquote>
+
+<h2 id="share-your-new-container-on-docker-hub">Share your new container on Docker Hub</h2>
+
+<p>Images that you release publicly can be stored on the Docker Hub for free.  If you
+name your image as described above, with your Docker Hub username, all you need to do
+is run the opposite of <code class="language-plaintext highlighter-rouge">docker pull</code> – <code class="language-plaintext highlighter-rouge">docker push</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker push alice/alpine-python
+</code></pre></div></div>
+
+<p>Make sure to substitute the full name of your container!</p>
+
+<p>In a web browser, open <a href="https://hub.docker.com">https://hub.docker.com</a>, and on your user page you should now see your container listed, for anyone to use or build on.</p>
+
+<blockquote class="callout">
+  <h2 id="logging-in">Logging In</h2>
+
+  <p>Technically, you have to be logged into Docker on your computer for this to work.
+Usually it happens by default, but if <code class="language-plaintext highlighter-rouge">docker push</code> doesn’t work for you,
+run <code class="language-plaintext highlighter-rouge">docker login</code> first, enter your Docker Hub username and password, and then
+try <code class="language-plaintext highlighter-rouge">docker push</code> again.</p>
+</blockquote>
+
+<h2 id="whats-in-a-name-again">What’s in a name? (again)</h2>
+
+<p>You don’t <em>have</em> to name your containers using the <code class="language-plaintext highlighter-rouge">USERNAME/CONTAINER:TAG</code> naming&gt; scheme. On your own computer, you can call containers whatever you want and refer to
+them by the names you choose. It’s only when you want to share a container that it
+needs the correct naming format.</p>
+
+<p>You can rename images using the <code class="language-plaintext highlighter-rouge">docker tag</code> command. For example, imagine someone
+named Alice has been working on a workflow container and called it <code class="language-plaintext highlighter-rouge">workflow-test</code>
+on her own computer. She now wants to share it in her <code class="language-plaintext highlighter-rouge">alice</code> Docker Hub account
+with the name <code class="language-plaintext highlighter-rouge">workflow-complete</code> and a tag of <code class="language-plaintext highlighter-rouge">v1</code>. Her <code class="language-plaintext highlighter-rouge">docker tag</code> command
+would look like this:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker tag workflow-test alice/workflow-complete:v1
+</code></pre></div></div>
+
+<p>She could then push the re-named container to Docker Hub,
+using <code class="language-plaintext highlighter-rouge">docker push alice/workflow-complete:v1</code></p>
+
+<!--  LocalWords:  PowerShell
+ -->
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p><code class="language-plaintext highlighter-rouge">Dockerfiles</code> specify what is within Docker images.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker build</code> command is used to build an image from a <code class="language-plaintext highlighter-rouge">Dockerfile</code></p>
+</li>
+    
+    <li><p>You can share your Docker images through the Docker Hub so that others can create Docker containers from your images.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="creating-more-complex-container-images" class="maintitle">Creating More Complex Container Images</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 30 min
+      <br />
+      <strong>Exercises:</strong> 30 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I make more complex container images?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Explain how you can include files within Docker images when you build them.</p>
+</li>
+	
+	<li><p>Explain how you can access files on the Docker host from your Docker containers.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>In order to create and use your own containers, you may need more information than
+our previous example. You may want to use files from outside the container, copy
+those files into the container, and just generally learn a little bit about software
+installation. This episode will cover these. Note that the examples will get gradually
+more and more complex - most day-to-day use of containers can be accomplished
+using the first 1-2 sections on this page.</p>
+
+<h2 id="using-scripts-and-files-from-outside-the-container">Using scripts and files from outside the container</h2>
+
+<p>In your shell, change to the <code class="language-plaintext highlighter-rouge">sum</code> folder in the <code class="language-plaintext highlighter-rouge">docker-intro</code> folder and look at
+the files inside.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Desktop/docker-intro/sum
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>This folder has both a <code class="language-plaintext highlighter-rouge">Dockerfile</code> and a python script called <code class="language-plaintext highlighter-rouge">sum.py</code>. Let’s say
+we wanted to try running the script using our recently created <code class="language-plaintext highlighter-rouge">alpine-python</code>
+container.</p>
+
+<blockquote class="challenge">
+  <h2 id="running-containers">Running containers</h2>
+
+  <p>What command would we use to run python from the <code class="language-plaintext highlighter-rouge">alpine-python</code> container?</p>
+</blockquote>
+
+<p>If we try running the container and Python script, what happens?</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run alice/alpine-python python3 sum.py
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3: can't open file 'sum.py': [Errno 2] No such file or directory
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="no-such-file-or-directory">No such file or directory</h2>
+
+  <p>What does the error message mean? Why might the Python inside the container
+not be able to find or open our script?</p>
+
+</blockquote>
+
+<p>The problem here is that the container and its file system is separate from our
+host computer’s file system. When the container runs, it can’t see anything outside
+itself, including any of the files on our computer. In order to use Python
+(inside the container) and our script (outside the container, on our computer),
+we need to create a link between the directory on our computer and the container.</p>
+
+<p>This link is called a “mount” and is what happens automatically when a USB drive
+or other external hard drive gets connected to a computer - you can see the
+contents appear as if they were on your computer.</p>
+
+<p>We can create a mount between our computer and the running container by using an additional
+option to <code class="language-plaintext highlighter-rouge">docker run</code>. We’ll also use the variable <code class="language-plaintext highlighter-rouge">${PWD}</code> which will substitute
+in our current working directory. The option will look like this</p>
+
+<p><code class="language-plaintext highlighter-rouge">-v ${PWD}:/temp</code></p>
+
+<p>What this means is – link my current directory with the container, and inside the
+container, name the directory <code class="language-plaintext highlighter-rouge">/temp</code></p>
+
+<p>Let’s try running the command now:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp alice/alpine-python python3 sum.py
+</code></pre></div></div>
+
+<p>But we get the same error!</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3: can't open file 'sum.py': [Errno 2] No such file or directory
+</code></pre></div></div>
+
+<p>This final piece is a bit tricky – we really have to remember to put ourselves
+inside the container. Where is the <code class="language-plaintext highlighter-rouge">sum.py</code> file? It’s in the directory that’s been
+mapped to <code class="language-plaintext highlighter-rouge">/temp</code> – so we need to include that in the path to the script. This
+command should give us what we need:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp alice/alpine-python python3 /temp/sum.py
+</code></pre></div></div>
+
+<p>Note that if we create any files in the <code class="language-plaintext highlighter-rouge">/temp</code> directory while the container is
+running, these files will appear on our host filesystem in the original directory
+and will stay there even when the container stops.</p>
+
+<blockquote class="challenge">
+  <h2 id="exercise-explore-the-script">Exercise: Explore the script</h2>
+
+  <p>What happens if you use the <code class="language-plaintext highlighter-rouge">docker run</code> command above
+and put numbers after the script name?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <p>This script comes from <a href="https://wiki.python.org/moin/SimplePrograms">the Python Wiki</a>
+and is set to add all numbers
+that are passed to it as arguments.</p>
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-checking-the-options">Exercise: Checking the options</h2>
+
+  <p>Our Docker command has gotten much longer! Can you go through each piece of
+the Docker command above the explain what it does? How would you characterize
+the key components of a Docker command?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-1">Solution</h2>
+
+    <p>Here’s a breakdown of each piece of the command above</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker run</code>: use Docker to run a container</li>
+      <li><code class="language-plaintext highlighter-rouge">-v ${PWD}:/temp</code>: connect my current working directory (<code class="language-plaintext highlighter-rouge">${PWD}</code>) as a folder
+inside the container called <code class="language-plaintext highlighter-rouge">/temp</code></li>
+      <li><code class="language-plaintext highlighter-rouge">alice/alpine-python</code>: name of the container to run</li>
+      <li><code class="language-plaintext highlighter-rouge">python3 /temp/sum.py</code>: what commands to run in the container</li>
+    </ul>
+
+    <p>More generally, every Docker command will have the form:
+`docker [action] [docker options] [docker image] [command to run inside]</p>
+
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="exercise-interactive-jobs">Exercise: Interactive jobs</h2>
+
+  <p>Try using the directory mount option but run the container interactively.
+Can you find the folder that’s connected to your computer? What’s inside?</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-2">Solution</h2>
+
+    <p>The docker command to run the container interactively is:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/temp <span class="nt">-it</span> alice/alpine-python sh
+</code></pre></div>    </div>
+
+    <p>Once inside, you should be able to navigate to the <code class="language-plaintext highlighter-rouge">/temp</code> folder
+and see that’s contents are the same as the files on your computer:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# <span class="nb">cd</span> /temp
+/# <span class="nb">ls</span>
+</code></pre></div>    </div>
+  </blockquote>
+</blockquote>
+
+<p>Mounting a folder can be very useful when you want to run the software inside your container on many different input files.
+In other situations, you may want to save or archive an authoritative version of your data by adding it to the container permanently.  That’s what we will cover next.</p>
+
+<h2 id="including-personal-scripts-and-data-in-a-container">Including personal scripts and data in a container</h2>
+
+<p>Our next project will be to add our own files to a container - something you
+might want to do if you’re sharing a finished analysis or just want to have
+an archived copy of your entire analysis including the data. Let’s assume that we’ve finished with our <code class="language-plaintext highlighter-rouge">sum.py</code>
+script and want to add it to the container itself.</p>
+
+<p>In your shell, you should still be in the <code class="language-plaintext highlighter-rouge">sum</code> folder in the <code class="language-plaintext highlighter-rouge">docker-intro</code> folder.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">pwd</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/Users/yourname/Desktop/docker-intro/sum
+</code></pre></div></div>
+
+<p>Take a look at the Dockerfile. It looks similar to the one we used before, but
+it has an additional line with the <code class="language-plaintext highlighter-rouge">COPY</code> keyword.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COPY sum.py /home
+</code></pre></div></div>
+
+<p>This line will cause Docker to copy the file from your computer into the container’s
+file system. Let’s build the container like before, but give it a different name:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alice/alpine-sum <span class="nb">.</span>
+</code></pre></div></div>
+
+<blockquote class="challenge">
+  <h2 id="exercise-did-it-work">Exercise: Did it work?</h2>
+
+  <p>Can you remember how to run a container interactively? Try that with this one.
+Once inside, try running the Python script.</p>
+
+  <blockquote class="solution">
+    <h2 id="solution-3">Solution</h2>
+
+    <p>You can start the container interactively like so:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alice/alpine-sum sh
+</code></pre></div>    </div>
+
+    <p>You should be able to run the python command inside the container like this:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/# python3 /home/sum.py
+</code></pre></div>    </div>
+
+  </blockquote>
+</blockquote>
+
+<p>This <code class="language-plaintext highlighter-rouge">COPY</code> keyword can be used to place your own scripts or own data into a container
+that you want to publish or use as a record. Note that it’s not necessarily a good idea
+to put your scripts inside the container if you’re constantly changing or editing them.
+Then, referencing the scripts from outside the container is a good idea, as we
+did in the previous section. You also want to think carefully about size – if you
+run <code class="language-plaintext highlighter-rouge">docker image ls</code> you’ll see the size of each image all the way on the right of
+the screen. The bigger your image becomes, the harder it will be to easily download.</p>
+
+<blockquote class="callout">
+  <h2 id="copying-alternatives">Copying alternatives</h2>
+
+  <p>Another trick for getting your own files into a container is by using the <code class="language-plaintext highlighter-rouge">RUN</code>
+keyword and downloading the files from the internet. For example, if your code
+is in a GitHub repository, you could include this statement in your Dockerfile
+to download the latest version every time you build the container:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN git clone https://github.com/alice/mycode
+</code></pre></div>  </div>
+
+  <p>Similarly, the <code class="language-plaintext highlighter-rouge">wget</code> command can be used to download any file publicly available
+on the internet:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.10.0/ncbi-blast-2.10.0+-x64-linux.tar.gz
+</code></pre></div>  </div>
+
+</blockquote>
+
+<h2 id="more-fancy-dockerfile-options-optional-for-presentation-or-as-exercises">More fancy <code class="language-plaintext highlighter-rouge">Dockerfile</code> options (optional, for presentation or as exercises)</h2>
+
+<p>We can expand on the example above to make our container even more “automatic”.
+Here are some ideas:</p>
+
+<h3 id="make-the-sumpy-script-run-automatically">Make the <code class="language-plaintext highlighter-rouge">sum.py</code> script run automatically</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+RUN apk add --update python3 py3-pip python3-dev
+
+# Run the sum.py script as the default command
+CMD ["python3", "/home/sum.py"]
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v1 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v1
+</code></pre></div></div>
+
+<p>You’ll notice that you can run the container without arguments just fine,
+resulting in <code class="language-plaintext highlighter-rouge">sum = 0</code>, but this is boring. Supplying arguments however
+doesn’t work:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run alpine-sum:v1 10 11 12
+</code></pre></div></div>
+<p>results in</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker: Error response from daemon: OCI runtime create failed:
+container_linux.go:349: starting container process caused "exec:
+\"10\": executable file not found in $PATH": unknown.
+</code></pre></div></div>
+
+<p>This is because the arguments <code class="language-plaintext highlighter-rouge">10 11 12</code> are interpreted as a
+<em>command</em> that replaces the default command given by <code class="language-plaintext highlighter-rouge">CMD
+["python3", "/home/sum.py"]</code> in the image.</p>
+
+<p>To achieve the goal of having a command that <em>always</em> runs when the
+container is run <em>and</em> can be passed the arguments given on the
+command line, use the keyword <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code> in the <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+RUN apk add --update python3 py3-pip python3-dev
+
+# Run the sum.py script as the default command and
+# allow people to enter arguments for it
+ENTRYPOINT ["python3", "/home/sum.py"]
+
+# Give default arguments, in case none are supplied on
+# the command-line
+CMD ["10", "11"]
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v2 <span class="nb">.</span>
+<span class="c"># Most of the time you are interested in the sum of 10 and 11:</span>
+<span class="nv">$ </span>docker run alpine-sum:v2
+<span class="c"># Sometimes you have more challenging calculations to do:</span>
+<span class="nv">$ </span>docker run alpine-sum:v2 12 13 14
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="overriding-the-entrypoint">Overriding the ENTRYPOINT</h2>
+  <p>Sometimes you don’t want to run the
+image’s <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code>. For example if you have a specialized image
+that does only sums, but you need an interactive shell to examine
+the container:</p>
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> alpine-sum:v2 /bin/sh
+</code></pre></div>  </div>
+  <p>will yield</p>
+  <div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please supply integer arguments
+</code></pre></div>  </div>
+  <p>You need to override the <code class="language-plaintext highlighter-rouge">ENTRYPOINT</code>-statement in the image like so:</p>
+  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">--entrypoint</span> /bin/sh alpine-sum:v2
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="add-the-sumpy-script-to-the-path-so-you-can-run-it-directly">Add the <code class="language-plaintext highlighter-rouge">sum.py</code> script to the <code class="language-plaintext highlighter-rouge">PATH</code> so you can run it directly:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+# set script permissions
+RUN chmod +x /home/sum.py
+# add /home folder to the PATH
+ENV PATH /home:$PATH
+
+RUN apk add --update python3 py3-pip python3-dev
+</code></pre></div></div>
+
+<p>Build and test it:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v3 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v3 sum.py 1 2 3 4
+</code></pre></div></div>
+
+<!--  LocalWords:  PowerShell
+ -->
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>You can include files from your Docker host into your Docker images by using the <code class="language-plaintext highlighter-rouge">COPY</code> instruction in your <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</p>
+</li>
+    
+    <li><p>Docker allows containers to read and write files from the Docker host.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="containers-used-in-generating-this-lesson" class="maintitle">Containers used in generating this lesson</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can containers be useful to me for building websites?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Demonstrate how to construct a website using containers to transform a specification into a fully-presented website.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>The website for this lesson is generated mechanically, based on a set of files that specify the configuration of the site, its presentation template, and the content to go on this page. This is far more manageable than editing each webpage of the lesson separately, for example, if the page header needs to change, this change can be made in one place, and all the pages regenerated. The alternative would be needing to edit each page to repeat the change: this is not productive or suitable work for humans to do!</p>
+
+<p>In your shell window, in your <code class="language-plaintext highlighter-rouge">docker-intro</code> create a new directory <code class="language-plaintext highlighter-rouge">build-website</code> and <code class="language-plaintext highlighter-rouge">cd</code> into it. We will later be expanding a ZIP file into this directory later.</p>
+
+<p>Now open a web browser window and:</p>
+<ol>
+  <li>Navigate to the GitHub repository that contains the files for this session, at <a href="https://github.com/richford/docker-introduction/">https://github.com/richford/docker-introduction/</a>;</li>
+  <li>Click the green “Clone or download” button on the right-hand side of the page;</li>
+  <li>Click “Download ZIP”.</li>
+  <li>The downloaded ZIP file should contain one directory named <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code>.</li>
+  <li>Move the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> folder into the <code class="language-plaintext highlighter-rouge">build-website</code> folder you created above.</li>
+</ol>
+
+<blockquote class="callout">
+  <h2 id="there-are-many-ways-to-work-with-zip-files">There are many ways to work with ZIP files</h2>
+  <p>Note that the last two steps can be achieved using a Mac or Windows graphical user interface. There are also ways to effect expanding the ZIP archive on the command line, for example, on my Mac I can achieve the effect of those last two steps through running the command <code class="language-plaintext highlighter-rouge">unzip ~/Downloads/docker-introduction-gh-pages.zip</code>.</p>
+</blockquote>
+
+<p>In your shell window, if you <code class="language-plaintext highlighter-rouge">cd</code> into the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> folder and list the files, you should see something similar to what I see:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>docker-introduction-gh-pages
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AUTHORS			_episodes		code
+CITATION		_episodes_rmd		data
+CODE_OF_CONDUCT.md	_extras			fig
+CONTRIBUTING.md		_includes		files
+LICENSE.md		_layouts		index.md
+Makefile		aio.md			reference.md
+README.md		assets			setup.md
+_config.yml		bin
+</code></pre></div></div>
+
+<p>You can now request that a container is created that will compile the files in this set into the lesson website, and will run a simple webserver to allow you to view your version of the website locally. Note that this command will be long and fiddly to type, so you probably want to copy-and-paste it into your shell window. This command will continue to (re-)generate and serve up your version of the lesson website, so you will not get your shell prompt back until you type <kbd>control</kbd>+<kbd>c</kbd>. This will stop the webserver, since it cleans away the container.</p>
+
+<blockquote class="callout">
+  <h2 id="if-you-happen-to-have-the-make-tool-already-installed">If you happen to have the <code class="language-plaintext highlighter-rouge">make</code> tool already installed…</h2>
+  <p>We are taking an atypical approach in using the command that follows, since you are not required to have set up the <code class="language-plaintext highlighter-rouge">make</code> tool on your computer. However you may want to see whether you happen to have <code class="language-plaintext highlighter-rouge">make</code> installed anyway, by typing <code class="language-plaintext highlighter-rouge">make docker-serve</code> instead of the command below. At worst, this will fail and you can use the command shown below.</p>
+</blockquote>
+
+<p>For macOS, Linux and PowerShell:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">--rm</span> <span class="nt">-it</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>For <code class="language-plaintext highlighter-rouge">cmd.exe</code> shells on Microsoft Windows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker run --rm -it -v "%CD%":/srv/jekyll -p 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>When I ran the macOS command, the output was as follows:</p>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unable to find image 'jekyll/jekyll:pages' locally
+pages: Pulling from jekyll/jekyll
+cbdbe7a5bc2a: Already exists 
+aa8ae8202b42: Already exists 
+b21786fe7c0d: Already exists 
+68296e6645b2: Already exists 
+6b1c37303e2d: Already exists 
+4d49f4d60e44: Pull complete 
+Digest: sha256:3741cb6d48b1ed3c544db4af9e2485fba31ddb5c2deb83a93b33fd252e8e2768
+Status: Downloaded newer image for jekyll/jekyll:pages
+ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux-musl]
+Configuration file: /srv/jekyll/_config.yml
+            Source: /srv/jekyll
+       Destination: /srv/jekyll/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+      Remote Theme: Using theme carpentries/carpentries-theme
+                    done in 2.996 seconds.
+ Auto-regeneration: enabled for '/srv/jekyll'
+    Server address: http://0.0.0.0:4000
+  Server running... press ctrl-c to stop.
+</code></pre></div></div>
+
+<p>In the preceding output, you see Docker downloading the image for Jekyll, which is a tool for building websites from specification files such as those used for this lesson. The line <code class="language-plaintext highlighter-rouge">jekyll serve</code> indicates a command that runs within the Docker container instance. The output below that is from the Jekyll tool itself, highlighting that the website has been built, and indicating that there is a server running.</p>
+
+<p>Open a web browser window and visit the address <a href="http://localhost:4000/">http://localhost:4000/</a>. You should see a site that looks very similar to that at <a href="https://richford.github.io/docker-introduction/">https://richford.github.io/docker-introduction/</a>.</p>
+
+<p>Using a new shell window, or using your laptop’s GUI, locate the file <code class="language-plaintext highlighter-rouge">index.md</code> within the <code class="language-plaintext highlighter-rouge">docker-introduction-gh-pages</code> directory, and open it in your preferred editor program.</p>
+
+<p>Near the top of this file you should see the description starting “This session aims to introduce the use of Docker containers with the goal of using them to effect reproducible computational environments.” Make a change to this message, and save the file.</p>
+
+<p>If you reload your web browser, the change that you just made should be visible. This is because the Jekyll container saw that you changed the <code class="language-plaintext highlighter-rouge">index.md</code> file, and regenerated the website.</p>
+
+<p>You can stop the Jekyll container by clicking in its terminal window and typing <kbd>control</kbd>+<kbd>c</kbd>.</p>
+
+<p>You have now achieved using a reproducible computational environment to reproduce a lesson about reproducible computing environments.</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The generation of this lesson website can be effected using a container.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="containers-in-research-workflows-reproducibility-and-granularity" class="maintitle">Containers in research workflows: reproducibility and granularity</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I use container images to make my research more reproducible?</p>
+</li>
+	
+	<li><p>How do I incorporate containers into my research workflow?</p>
+</li>
+	
+	<li><p>What are container orchestration tools and how can they potentially help me?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Understand how container images can help make research more reproducible.</p>
+</li>
+	
+	<li><p>Understand what practical steps I can take to improve the reproducibility of my research using containers.</p>
+</li>
+	
+	<li><p>Know that container orchestration tools are and what they can do</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>Although this workshop is titled “Reproducible computational environments using containers”,
+so far we have mostly covered the mechanics of using Docker with only passing reference to
+the reproducibility aspects. In this section, we discuss these aspects in more detail.</p>
+
+<blockquote class="callout">
+  <h2 id="work-in-progress">Work in progress…</h2>
+  <p>Note that reproducibility aspects of software and containers are an active area of research, discussion and development so are subject to many changes. We will present some ideas and approaches here but best practices will likely evolve in the near future.</p>
+</blockquote>
+
+<h2 id="reproducibility">Reproducibility</h2>
+
+<p>By <em>reproducibility</em> here we mean the ability of someone else (or your future self) being able to reproduce
+what you did computationally at a particular time (be this in research, analysis or something else)
+as closely as possible even if they do not have access to exactly the same hardware resources #
+that you had when you did the original work.</p>
+
+<p>Some examples of why containers are an attractive technology to help with reproducibility include:</p>
+
+<ul>
+  <li>The same computational work can be run across multiple different technologies seamlessly (e.g. Windows, macOS, Linux).</li>
+  <li>You can save the exact process that you used for your computational work (rather than relying on potentially incomplete notes).</li>
+  <li>You can save the exact versions of software and their dependencies in the image.</li>
+  <li>You can access legacy versions of software and underlying dependencies which may not be generally available any more.</li>
+  <li>Depending on their size, you can also potentially store a copy of key data within the image.</li>
+  <li>You can archive and share the image as well as associating a persistent identifier with an image to allow other researchers to reproduce and build on your work.</li>
+</ul>
+
+<h2 id="sharing-images">Sharing images</h2>
+
+<p>As we have already seen, the Docker Hub provides a platform for sharing images publicly. Once you have uploaded an image, you can point people to its public location and they can download and build upon it.</p>
+
+<p>This is fine for working collaboratively with images on a day-to-day basis but the Docker Hub is not a good option for long time archive of images in support of research and publications as:</p>
+
+<ul>
+  <li>free accounts have a limit on how long an image will be hosted if it is not updated</li>
+  <li>it does not support adding persistent identifiers to images</li>
+  <li>it is easy to overwrite tagged images with newer versions by mistake.</li>
+</ul>
+
+<h2 id="archiving-and-persistently-identifying-images-using-zenodo">Archiving and persistently identifying images using Zenodo</h2>
+
+<p>When you publish your work or make it publicly available in some way it is good practice to make images that you used for computational work available in an immutable, persistent way and to have an identifier that allows people to cite and give you credit for the work you have done. <a href="https://zenodo.org/">Zenodo</a> provides this functionality.</p>
+
+<p>Zenodo supports the archiving of <em>tar</em> archives and we can capture our Docker images as tar archives using the <code class="language-plaintext highlighter-rouge">docker save</code> command.
+For example, to export the image we created earlier in this lesson:</p>
+
+<div class="language-plaintext bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker save alice/alpine-python:v1 -o alpine-python.tar
+</code></pre></div></div>
+
+<p>These tar images can become quite large and Zenodo supports uploads up to 50GB so you may need to compress your archive to make it fit on Zenodo using a tool such as gzip (or zip):</p>
+
+<div class="language-plaintext bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gzip alpine-python.tar
+</code></pre></div></div>
+
+<p>Once you have your archive, you can <a href="https://zenodo.org/deposit/">deposit it on Zenodo</a> and this will:</p>
+
+<ul>
+  <li>Create a long-term archive snapshot of your Docker image which people (including your future self) can download and reuse or reproduce your work.</li>
+  <li>Create a persistent DOI (<em>Digital Object Identifier</em>) that you can cite in any publications or outputs to enable reproducibility and recognition of your work.</li>
+</ul>
+
+<p>In addition to the archive file itself, the deposit process will ask you to provide some basic metadata to classify the image and the associated work.</p>
+
+<p>Note that Zenodo is not the only option for archiving and generating persistent DOIs for images. There are other services out there - for example, some organizations may provide their own, equivalent, service.</p>
+
+<h2 id="reproducibility-good-practice">Reproducibility good practice</h2>
+
+<ul>
+  <li>Make use of images to capture the computational environment required for your work.</li>
+  <li>Decide on the appropriate granularity for the images you will use for your computational work - this will be different for each project/area. Take note of accepted practice from contemporary work in the same area. What are the right building blocks for individual images in your work?</li>
+  <li>Document what you have done and why - this can be put in comments in the Dockerfile and the use of the image described in associated documentation and/or publications. Make sure that references are made in both directions so that the image and the documentation are appropriately linked.</li>
+  <li>When you publish work (in whatever way) use an archiving and DOI service such as Zenodo to make sure your image is captured as it was used for the work and that is obtains a persistent DOI to allow it to be cited and referenced properly.</li>
+</ul>
+
+<h2 id="container-granularity">Container Granularity</h2>
+
+<p>As mentioned above, one of the decisions you may need to make when containerising your research workflows
+is what level of <em>granularity</em> you wish to employ. The two extremes of this decision could be characterised
+as:</p>
+
+<ul>
+  <li>Create a single container image with all the tools you require for your research or analysis workflow</li>
+  <li>Create many container images each running a single command (or step) of the workflow and use them in
+sequence</li>
+</ul>
+
+<p>Of course, many real applications will sit somewhere between these two extremes.</p>
+
+<blockquote class="challenge">
+  <h2 id="positives-and-negatives">Positives and negatives</h2>
+  <p>What are the advantages and disadvantages of the two approaches to container granularity for research
+workflows described above? Think about this
+and write a few bullet points for advantages and disadvantages for each approach in the course Etherpad.</p>
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+    <p>This is not an exhaustive list but some of the advantages and disadvantages could be:</p>
+    <h3 id="single-large-container">Single large container</h3>
+    <ul>
+      <li>Advantages:
+        <ul>
+          <li>Simpler to document</li>
+          <li>Full set of requirements packaged in one place</li>
+          <li>Potentially easier to maintain (though could be opposite if working with large, distributed group)</li>
+        </ul>
+      </li>
+      <li>Disadvantages:
+        <ul>
+          <li>Could get very large in size, making it more difficult to distribute
+            <ul>
+              <li>Could use Docker multi-stage build docs.docker.com/develop/develop-images/multistage-build to reduce size</li>
+              <li>Singularity also has a multistage build feature: sylabs.io/guides/3.2/user-guide/definition_files.html#multi-stage-builds</li>
+            </ul>
+          </li>
+          <li>May end up with same dependency issues within the container from different software requirements</li>
+          <li>Potentially more complex to test</li>
+          <li>Less re-useable for different, but related, work</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="multiple-smaller-containers">Multiple smaller containers</h3>
+    <ul>
+      <li>Advantages:
+        <ul>
+          <li>Individual components can be re-used for different, but related, work</li>
+          <li>Individual parts are smaller in size making them easier to distribute</li>
+          <li>Avoid dependency issues between different softwares</li>
+          <li>Easier to test</li>
+        </ul>
+      </li>
+      <li>Disadvantage:
+        <ul>
+          <li>More difficult to document</li>
+          <li>Potentially more difficult to maintain (though could be easier if working with large, distributed group)</li>
+          <li>May end up with dependency issues between component containers if they get out of sync</li>
+        </ul>
+      </li>
+    </ul>
+  </blockquote>
+</blockquote>
+
+<blockquote class="challenge">
+  <h2 id="next-steps-with-containers">Next Steps With Containers</h2>
+
+  <p>Now that we’re at the end of the lesson material, take a moment to reflect on
+what you’ve learned, how it applies to you, and what to do next.</p>
+
+  <ol>
+    <li>In your own notes, write down or diagram your understanding of Docker Containers:
+concepts, commands, and how they work.</li>
+    <li>In the workshop’s shared notes document, write down how you think you might
+use containers in your daily work. If there’s something you want to try doing with
+containers right away, what is a next step after this workshop to make that happen?</li>
+  </ol>
+
+</blockquote>
+
+<h3 id="container-orchestration">Container Orchestration</h3>
+
+<p>Although you can certainly manage research workflows that use multiple containers manually, there are a number of
+container orchestration tools that you may find useful when managing workflows that use multiple containers.
+We won’t go in depth on using these tools in this lesson but instead briefly describe
+a few options and point to useful resources on using these tools to allow you to explore them yourself.</p>
+
+<ul>
+  <li>Docker Compose</li>
+  <li>Kubernetes</li>
+  <li>Docker Swarm</li>
+</ul>
+
+<blockquote class="callout">
+  <h2 id="the-wild-west">The Wild West</h2>
+  <p>Use of container orchestration tools for research workflows is a relatively new concept and so there
+is not a huge amount of documentation and experience out there at the moment. You may need to search
+around for useful information or, better still, contact your
+<a href="https://society-rse.org/community/rse-groups/">friendly neighbourhood RSE</a> to discuss what you want to do.</p>
+</blockquote>
+
+<p><strong>Docker Compose</strong> provides a way of constructing a unified workflow (or service) made up of multiple
+individual Docker containers. In addition to the individual Dockerfiles for each container, you provide
+a higher-level configuration file which describes the different containers and how they link together
+along with shared storage definitions between the containers. Once this high-level configuration has been
+defined, you can use single commands to start and stop the orchestrated set of containers.</p>
+
+<ul>
+  <li><a href="https://www.degruyter.com/view/journals/jib/14/2/article-20170016.xml">Using Docker Compose for the Simple Deployment of an Integrated Drug Target Screening Platform</a></li>
+  <li><a href="https://docs.docker.com/compose/">Docker Compose Overview</a></li>
+</ul>
+
+<p><strong>Kubernetes</strong> is an open source framework that provides similar functionality to Docker Compose. Its
+particular strengths are that is platform independent and can be used with many different container
+technologies and that it is widely available on cloud platforms so once you have implemented your workflow
+in Kubernetes it can be deployed in different locations as required. It has become the de facto standard
+for container orchestration.</p>
+
+<ul>
+  <li><a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">What is Kubernetes</a></li>
+</ul>
+
+<p><strong>Docker Swarm</strong> provides a way to scale out to multiple copies of similar containers. This potentially
+allows you to parallelise and scale out your research workflow so that you can run multiple copies and
+increase throughput. This would allow you, for example, to take advantage of multiple cores on a local
+system or run your workflow in the cloud to access more resources. Docker Swarm uses the concept of
+a manager container and worker containers to implement this distribution.</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/engine/swarm/">Docker Swarm Overview</a></li>
+</ul>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>Container images allow us to encapsulate the computation (and data) we have used in our research.</p>
+</li>
+    
+    <li><p>Using a service such as Docker Hub allows us to easily share computational work we have done.</p>
+</li>
+    
+    <li><p>Using container images along with a DOI service such as Zenodo allows us to capture our work and enables reproducibility.</p>
+</li>
+    
+    <li><p>Tools such as Docker Compose, Docker Swarm and Kubernetes allow us to describe how multiple containers work together.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+<h1 id="introduction-to-docker-compose" class="maintitle">Introduction to docker-compose</h1>
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong> 20 min
+      <br />
+      <strong>Exercises:</strong> 0 min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I simplify the use of Docker containers for my users?</p>
+</li>
+	
+	<li><p>How can synchronize multiple Docker containers together?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+	<li><p>Be able to use a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to document and simplify the use of a container.</p>
+</li>
+	
+	<li><p>Understand how <code class="language-plaintext highlighter-rouge">docker-compose</code> can be used to start multiple containers that depend on each other.</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h3 id="before-we-start">Before we start…</h3>
+<p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> tool is one of a number of tools for organizing containers, and it is evolving rapidly. In this lesson, we will focus on uses of <code class="language-plaintext highlighter-rouge">docker-compose</code> that arise commonly when developing reproducible computations. This is just one set of ways that <code class="language-plaintext highlighter-rouge">docker-compose</code> can be used, however. In industry, for example, <code class="language-plaintext highlighter-rouge">docker-compose</code> is often used to manage the elastic coordination of cloud computing nodes that host web-services.</p>
+
+<h3 id="docker-compose-can-simplify-the-use-of-docker-containers"><code class="language-plaintext highlighter-rouge">docker-compose</code> can simplify the use of Docker containers</h3>
+<p>By this point, we’ve seen that the <code class="language-plaintext highlighter-rouge">docker</code> command is a powerful tool for interacting with containers and container images. It can be used to build containers, pull containers from DockerHub, and to run containers. We have also seen how a <code class="language-plaintext highlighter-rouge">Dockerfile</code> can encode a specific set of instructions that the <code class="language-plaintext highlighter-rouge">docker build</code> command can use to create a particular software environment in a container image. A frequent tactic for software projects is to include a <code class="language-plaintext highlighter-rouge">Dockerfile</code> in the project’s GitHub repository root. This file generally creates a container image that is capable of supporting the software in the repository so that developers and users who download the software from GitHub can easily run it.</p>
+
+<blockquote class="callout">
+  <h2 id="docker-compose-is-an-official-part-of-docker">docker-compose is an official part of docker…</h2>
+  <p>There are many tools for orchestrating and managing containers, but a
+particular advantage of <code class="language-plaintext highlighter-rouge">docker-compose</code> is that anyone who has Docker
+installed should be able to use <code class="language-plaintext highlighter-rouge">docker-compose</code> as well. This is a big
+advantage if your goal is to simplify the process of building and running a
+container.</p>
+</blockquote>
+
+<p>For example, suppose I am working on a team that is developing a Linux-based data analysis tool, but I only have a Windows machine. In order for me to test the code I’ve written, I will need to be able to run it on a Linux machine. A simple fix would be for us to include a Dockerfile that encodes all the software dependencies of the project on top of a Linux image such as the <code class="language-plaintext highlighter-rouge">alpine</code> Docker image we have used in previous lessons. Then, whenever I needed to test my code, I can use <code class="language-plaintext highlighter-rouge">docker run</code> to start the container and test my code.</p>
+
+<p>Although this approach is very valuable, a frequent difficulty is that, in order to use software in this manner, one must be familiar enough with Docker to correctly run both the <code class="language-plaintext highlighter-rouge">docker build</code> and the <code class="language-plaintext highlighter-rouge">docker run</code> commands. These commands can be intimidating for inexperienced users, and for complex containers, they can themselves be very long.</p>
+
+<p>One way to simplify the process of building and running a container for an end-user is to write a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file. Such a file can be used to document the way that a container is intended to be built and run. In this lesson, we will demonstrate how to do this with the <code class="language-plaintext highlighter-rouge">alpine-sum</code> Docker image we created in an earlier lesson.</p>
+
+<h3 id="creating-our-first-docker-composeyml-file">Creating our first <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file</h3>
+<p>We will start by revisiting our <code class="language-plaintext highlighter-rouge">alpine-sum</code> <code class="language-plaintext highlighter-rouge">Dockerfile</code> from the <a href="http://0.0.0.0:4000/05b-advanced-containers/index.html">Advanced Containers</a> lesson. At the end of that lesson, we had a <code class="language-plaintext highlighter-rouge">Dockerfile</code> that looked like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM alpine
+
+COPY sum.py /home
+# set script permissions
+RUN chmod +x /home/sum.py
+# add /home folder to the PATH
+ENV PATH /home:$PATH
+
+RUN apk add --update python3 py3-pip python3-dev
+
+ENTRYPOINT ["python3", "/home/sum.py"]
+
+CMD ["10", "11"]
+</code></pre></div></div>
+
+<p>In order to build this Docker image, we used the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> alpine-sum:v3 <span class="nb">.</span>
+<span class="nv">$ </span>docker run alpine-sum:v3 1 2 3 4
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command uses a file called, predictably enough, <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>. The <code class="language-plaintext highlighter-rouge">yml</code> at the end is sometimes <code class="language-plaintext highlighter-rouge">yaml</code> instead–both of these are endings for YAML files, which are text-based data files that use an intuitive format. Go ahead and use your favorite text editor to create a file <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> with the following text:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  alpine-sum:
+    build: .
+</code></pre></div></div>
+
+<p>Then, rather than building <strong>and</strong> running the container, we can use a single command. If you still have the <code class="language-plaintext highlighter-rouge">alpine-sum</code> Docker image built locally on your machine, however, you might want to run <code class="language-plaintext highlighter-rouge">docker image rm alpine-sum</code> before running the following command. The <code class="language-plaintext highlighter-rouge">image rm</code> command will delete the previous <code class="language-plaintext highlighter-rouge">alpine-sum</code> image so that you will be able to see whether the following command rebuilds the image:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run alpine-sum 1 2 3 4
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+ ---&gt; Running in a7a1806a67bb
+Removing intermediate container a7a1806a67bb
+ ---&gt; d595137a5db8
+Successfully built d595137a5db8
+Successfully tagged dockerintro_alpine-sum:latest
+WARNING: Image for service alpine-sum was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+sum = 10
+</code></pre></div></div>
+
+<p>Notice that if we run another command against the container, it won’t be rebuilt.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run alpine-sum 2 3 4 5
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sum = 14
+</code></pre></div></div>
+
+<h3 id="the-docker-composeyml-file">The <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file</h3>
+<p>Let’s break down the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file we just created to better understand it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: 3.0
+</code></pre></div></div>
+
+<p>The first line of the file simply states the version of the <code class="language-plaintext highlighter-rouge">docker-compose</code> schema that we’re using. Note that this is the version of the syntax we are using in this file, not the version of <code class="language-plaintext highlighter-rouge">docker-compose</code> we are using.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>services:
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">services</code> line is included in all <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> files. It tells <code class="language-plaintext highlighter-rouge">docker-compose</code> which containers are managed by this file. Although our <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file has only one container, it is possible for there to be multiple containers, all of which get started up when you use <code class="language-plaintext highlighter-rouge">docker-compose</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  alpine-sum:
+</code></pre></div></div>
+
+<p>The next line is indented in order to indicate that it is a sub-item under the <code class="language-plaintext highlighter-rouge">services</code> list (i.e., it is a service). We can give this service any name, but since we have been calling it <code class="language-plaintext highlighter-rouge">alpine-sum</code>, it is natural to keeep the same name.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    build: .
+</code></pre></div></div>
+
+<p>The final line is indented twice, indicating that it is part of the <code class="language-plaintext highlighter-rouge">alpine-sum</code> service. The <code class="language-plaintext highlighter-rouge">build</code> keyword indicates that the <code class="language-plaintext highlighter-rouge">alpine-sum</code> service should be built using the <code class="language-plaintext highlighter-rouge">docker build</code> command, and the <code class="language-plaintext highlighter-rouge">.</code> is simply an alias for the current directory (the directory containing the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file). We could have alternately used the <code class="language-plaintext highlighter-rouge">image</code> tag to declare a public image from DockerHub such as with the line `    image: alpine`.</p>
+
+<h3 id="using-docker-compose-to-run-a-server">Using <code class="language-plaintext highlighter-rouge">docker-compose</code> to run a server</h3>
+<p>We’ve focused in these lessons on using Docker to run single commands. However, recall that when we started the Jekyll server earlier, the Docker container stayed running in order to host the lesson web-page. This is a common use-case for Docker, and in order to manage such a container, we can use the <code class="language-plaintext highlighter-rouge">docker-compose up</code> command in place of <code class="language-plaintext highlighter-rouge">docker-compose run</code>.</p>
+
+<p>To demonstrate this, let’s return to the <code class="language-plaintext highlighter-rouge">docker-introduction</code> directory that we created earlier when we downloaded and unzipped the <code class="language-plaintext highlighter-rouge">docker-introduction</code> data.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>docker-introduction-gh-pages
+<span class="nv">$ </span><span class="nb">ls</span>
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AUTHORS			_episodes		code
+CITATION		_episodes_rmd		data
+CODE_OF_CONDUCT.md	_extras			fig
+CONTRIBUTING.md		_includes		files
+LICENSE.md		_layouts		index.md
+Makefile		aio.md			reference.md
+README.md		assets			setup.md
+_config.yml		bin
+</code></pre></div></div>
+
+<p>Previously, we used a somewhat long <code class="language-plaintext highlighter-rouge">docker run</code> command in order to start the Jekyll server here. This command (for Mac and Linux) was:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">--rm</span> <span class="nt">-it</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 jekyll/jekyll:pages jekyll serve
+</code></pre></div></div>
+
+<p>Let’s create a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to manage this particular server. Each of the options in the above command line has a related keyword that can be used in the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, but we’ll start with a simple YAML file.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">my-jekyll-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">jekyll/jekyll:pages</span>
+</code></pre></div></div>
+
+<p>This file is much like our earlier <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, with the exception that it uses an <code class="language-plaintext highlighter-rouge">image:</code> tag to declare that the Docker image for the <code class="language-plaintext highlighter-rouge">my-jekyll-server</code> service should be started from the <code class="language-plaintext highlighter-rouge">jekyll/jekyll:pages</code> image obtained from DockerHub. In fact, we can go ahead and use this <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, but since it only stores the name of the image, it won’t simplify the command-line very much.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose run <span class="nt">--rm</span> <span class="nt">-v</span> <span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>:/srv/jekyll <span class="nt">-p</span> 127.0.0.1:4000:4000 my-jekyll-server jekyll serve
+</code></pre></div></div>
+
+<p>(Don’t forget that you can push control-C to exit out of the Jekyll-server container.) In the above line, we no longer need to specify the container name; however, we still have to specify everything else, including the name of the service (<code class="language-plaintext highlighter-rouge">my-jekyll-server</code>).</p>
+
+<p>What would really be useful in this situation is if we could store some of the command-line options, like the port specification (<code class="language-plaintext highlighter-rouge">-p 127.0.0.1:4000:4000</code>) or the volumes specification <code class="language-plaintext highlighter-rouge">-v ${PWD}:/srv/jekyll</code> in the YAML file. Fortunately, we can! Docker compose supports a number of options for its services, including the <code class="language-plaintext highlighter-rouge">volumes:</code>, the <code class="language-plaintext highlighter-rouge">ports:</code>, and the <code class="language-plaintext highlighter-rouge">command:</code> keywords. Let’s edit the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to include these.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">my-jekyll-server</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">jekyll/jekyll:pages</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">${PWD}:/srv/jekyll"</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">127.0.0.1:4000:4000"</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">jekyll serve</span>
+</code></pre></div></div>
+
+<blockquote class="callout">
+  <h2 id="why-do-some-lines-start-with-a-dash">Why do some lines start with a dash?</h2>
+  <p>Notice in the above <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, the <code class="language-plaintext highlighter-rouge">volumes:</code> and <code class="language-plaintext highlighter-rouge">ports:</code>
+keywords are followed by a line that starts with indentation then a <code class="language-plaintext highlighter-rouge">-</code>.
+This is because both of these keywords can accept lists–i.e., you can
+specify multiple volumes and multiple ports for each service. Each such
+entry begins with an indentation then <code class="language-plaintext highlighter-rouge">-</code>.</p>
+</blockquote>
+
+<p>Let’s go ahead and test this out. Now that we have declared all of these details, we can start the Jekyll server with just the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose up
+</code></pre></div></div>
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Creating dockerintroduction_my-jekyll-server_1 ... 
+Creating dockerintroduction_my-jekyll-server_1 ... done
+Attaching to dockerintroduction_my-jekyll-server_1
+my-jekyll-server_1  | ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux-musl]
+my-jekyll-server_1  | Configuration file: /src/jekyll/_config.yml
+my-jekyll-server_1  |             Source: /srv/jekyll
+my-jekyll-server_1  |        Destination: /srv/jekyll/_site
+my-jekyll-server_1  |  Incremental build: disabled. Enable with --incremental
+my-jekyll-server_1  |       Generating... 
+my-jekyll-server_1  |                     done in 1.048 seconds.
+my-jekyll-server_1  |  Auto-regeneration: enabled for '/srv/jekyll'
+my-jekyll-server_1  |     Server address: http://0.0.0.0:4000
+my-jekyll-server_1  |   Server running... press ctrl-c to stop.
+</code></pre></div></div>
+
+<p>As you can hopefully see, this command successfully started the Jekyll server!</p>
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command is intended to coordinate multiple containers that work together.</p>
+</li>
+    
+    <li><p><code class="language-plaintext highlighter-rouge">docker-compose</code> can also document and automate the way a single container is invoked.</p>
+</li>
+    
+    <li><p>The <code class="language-plaintext highlighter-rouge">docker-compose</code> command reads its configuration from a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file.</p>
+</li>
+    
+  </ul>
+</blockquote>
+
+<hr />
+
+
+</article>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <hr/>
+  <div class="row">
+    <div class="col-md-6 license" id="license-info" align="left">
+	
+        Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> 2023 by <a href="/CITATION">the authors</a>.
+	
+    </div>
+    <div class="col-md-6 help-links" align="right">
+	
+	<a href="/edit//aio.md" data-checker-ignore>Edit on GitHub</a>
+	
+	/
+	<a href="/blob//CONTRIBUTING.md" data-checker-ignore>Contributing</a>
+	/
+	<a href="/">Source</a>
+	/
+	<a href="/blob//CITATION" data-checker-ignore>Cite</a>
+	/
+	<a href="mailto:team@carpentries.org">Contact</a>
+    </div>
+  </div>
+  <p class="text-muted text-right">
+    <small><i>Using <a href="https://github.com/carpentries/carpentries-theme/">The Carpentries theme</a> &mdash; Site last built on: 2023-08-07 16:12:44 -0500.</i></small>
+  </p>
+</footer>
+
+      
+    </div>
+    
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/lesson.js"></script>
+
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io"]]);
+  _paq.push(["setDoNotTrack", true]);
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+<script src="/assets/js/anchor.min.js"></script>
+<script>
+    anchors.add();
+</script>
+
+  </body>
+</html>
