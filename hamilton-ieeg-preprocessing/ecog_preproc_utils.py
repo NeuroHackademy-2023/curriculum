@@ -51,7 +51,7 @@ def applyHilbertTransform(X, rate, center, sd):
 def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
                   car_chans='average', log_transform=True, do_zscore=True,
                   hg_fs=100, notch_freqs=[60,120,180],
-                  ch_types='eeg', overwrite=False):
+                  ch_types='eeg', overwrite=False, save=False):
     
     # The suffix that will be added to the file name as
     # different procedures occur
@@ -80,11 +80,12 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         raw.compute_psd().plot(picks='data', exclude=[])
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title='notch filtered raw data')
-        try:
-            newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
-            raw.save(newfile, overwrite=overwrite)
-        except:
-            print(f"Can't save {newfile}. Do you need overwrite=True?")
+        if save:
+            try:
+                newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
+                raw.save(newfile, overwrite=overwrite)
+            except:
+                print(f"Can't save {newfile}. Do you need overwrite=True?")
 
     if CAR:
         full_suffix += '_car'
@@ -93,11 +94,12 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         raw.set_eeg_reference(car_chans)
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title='after referencing (CAR)')
-        try:
-            newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
-            raw.save(newfile, overwrite=overwrite)
-        except:
-            print(f"Can't save {newfile}. Do you need overwrite=True?")
+        if save:
+            try:
+                newfile = os.path.join(data_dir, 'Raw', f'ecog_raw{full_suffix}.fif')
+                raw.save(newfile, overwrite=overwrite)
+            except:
+                print(f"Can't save {newfile}. Do you need overwrite=True?")
 
     # Get center frequencies and standard deviations of the bands
     # for the Hilbert transform
@@ -132,7 +134,12 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         print(f"Filtering data in {band} band from {f_low} to {f_high} Hz")
         print("Note that this will *not* use the analytic amplitude like high gamma")
         raw.filter(l_freq=f_low, h_freq=f_high)
-        raw.save(os.path.join(out_dir, fname), overwrite=overwrite)
+        if save:
+            try:
+                raw.save(os.path.join(out_dir, fname), overwrite=overwrite)
+            except: 
+                print(f"Can't save {fname}. Do you need overwrite=True?")
+                
         raw.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                  title=f'after filtering in {band} band')
         transformed_data = raw.copy()
@@ -193,10 +200,11 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         fname = f'ecog_hilbAA_{f_low}to{f_high}_{nband}band{full_suffix}.fif'
         new_fname = os.path.join(hg_dir, fname) 
         print(f"Saving to {new_fname}")
-        try:
-            hgdat.save(new_fname, overwrite=overwrite)
-        except:
-            print(f"Can't save {new_fname}. Do you need overwrite=True?")
+        if save:
+            try:
+                hgdat.save(new_fname, overwrite=overwrite)
+            except:
+                print(f"Can't save {new_fname}. Do you need overwrite=True?")
         transformed_data = hgdat.copy()
         hgdat.plot(scalings='auto', color=dict(eeg='b'), n_channels=64, block=True,
                    title=f'after analytic amplitude in {band} band')
