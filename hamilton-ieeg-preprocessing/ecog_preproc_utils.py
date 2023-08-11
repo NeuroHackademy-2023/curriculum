@@ -58,8 +58,9 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
     full_suffix = ''
     
     raw_dir = os.path.join(data_dir, 'Raw')
-    if not os.path.isdir(raw_dir):
-        os.mkdir(raw_dir)
+    if save:
+        if not os.path.isdir(raw_dir):
+            os.mkdir(raw_dir)
         
     raw.load_data()
     raw.pick_types(meg=False, eeg=True, ecog=True) 
