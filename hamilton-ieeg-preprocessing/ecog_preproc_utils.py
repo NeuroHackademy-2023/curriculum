@@ -58,8 +58,9 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
     full_suffix = ''
     
     raw_dir = os.path.join(data_dir, 'Raw')
-    if not os.path.isdir(raw_dir):
-        os.mkdir(raw_dir)
+    if save:
+        if not os.path.isdir(raw_dir):
+            os.mkdir(raw_dir)
         
     raw.load_data()
     raw.pick_types(meg=False, eeg=True, ecog=True) 
@@ -109,9 +110,10 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
     if band == 'high_gamma':
         print(f"Getting {band} band data")
         hg_dir = os.path.join(data_dir, 'HilbAA_70to150_8band')
-        if not os.path.isdir(hg_dir):
-            print("Creating directory %s" %(hg_dir))
-            os.mkdir(hg_dir)
+        if save:
+            if not os.path.isdir(hg_dir):
+                print("Creating directory %s" %(hg_dir))
+                os.mkdir(hg_dir)
 
         # determine size of our high gamma band
         f_low = band_ranges[band][0]
@@ -125,9 +127,10 @@ def transformData(raw, data_dir, band='high_gamma', notch=True, CAR=True,
         f_high = band_ranges[band][1]
 
         out_dir = os.path.join(data_dir, f'{band}_{f_low}to{f_high}')
-        if not os.path.isdir(out_dir):
-            print("Creating directory %s" %(out_dir))
-            os.mkdir(out_dir)
+        if save:
+            if not os.path.isdir(out_dir):
+                print("Creating directory %s" %(out_dir))
+                os.mkdir(out_dir)
 
         fname = f'ecog_{band}_{f_low}to{f_high}{full_suffix}.fif'
 
